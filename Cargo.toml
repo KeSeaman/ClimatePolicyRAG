@@ -1,0 +1,19 @@
+[package]
+name = "climate_core"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "climate_core"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.20.0", features = ["extension-module", "abi3-py311"] }
+tokio = { version = "1.36.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+rayon = "1.9.0" # For parallel data processing
+tracing = "0.1" # Structured logging
+ndarray = "0.15" # Linear algebra
