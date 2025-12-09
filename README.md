@@ -27,8 +27,8 @@ graph TD
     end
 
     subgraph "Rust Core (climate_core)"
-        Index[Vector Index (SIMD)]
-        Doc[Document Struct (Zero-Copy)]
+        Index["Vector Index (SIMD)"]
+        Doc["Document Struct (Zero-Copy)"]
         Parser[Text Parser]
     end
 
