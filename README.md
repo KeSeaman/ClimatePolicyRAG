@@ -99,6 +99,20 @@ python run_ingest.py
 Retrieved 5 relevant documents.
 ```
 
+
+### 3. Run Query Test Suite
+Execute a comprehensive test suite of 10 sample queries against the system, verifying the full pipeline from ingestion to synthesis.
+
+```bash
+python run_test_queries.py
+```
+*Output Location:* `notes/Test_Queries.md`
+
+*This script will:*
+1. Ingest live data from ArXiv and World Bank.
+2. Run 10 diverse climate policy queries.
+3. Generate a structured Markdown report with intents, answers, and retrieved contexts.
+
 ## 📂 Project Structure
 
 ```
