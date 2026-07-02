@@ -1,3 +1,4 @@
+#![allow(non_local_definitions)]
 use pyo3::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;

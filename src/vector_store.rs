@@ -1,3 +1,4 @@
+#![allow(non_local_definitions)]
 use crate::models::{Document, SearchResult};
 use pyo3::prelude::*;
 use rayon::prelude::*;
