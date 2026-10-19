@@ -5,7 +5,7 @@ from toolz import pipe
 from climate_rag.agents.analysis import analyze_intent
 from climate_rag.agents.retrieval import retrieve_documents
 from climate_rag.agents.synthesis import synthesize_answer
-from climate_rag.knowledge_base import KnowledgeBase, SearchMode
+from climate_rag.knowledge_base import KnowledgeBase, SearchOptions
 from climate_rag.llm import LLM
 from climate_rag.models import AgentState
 
@@ -14,7 +14,7 @@ def run_retrieval(
     query: str,
     kb: KnowledgeBase,
     k: int = 5,
-    mode: SearchMode = "vector",
+    options: SearchOptions | None = None,
     expander: LLM | None = None,
 ) -> AgentState:
     """
@@ -25,7 +25,7 @@ def run_retrieval(
     state: AgentState = pipe(
         AgentState(query=query),
         analyze_intent,
-        partial(retrieve_documents, kb=kb, k=k, mode=mode, expander=expander),
+        partial(retrieve_documents, kb=kb, k=k, options=options, expander=expander),
     )
     return state
 
@@ -35,8 +35,8 @@ def run_rag_pipeline(
     kb: KnowledgeBase,
     llm: LLM,
     k: int = 5,
-    mode: SearchMode = "vector",
+    options: SearchOptions | None = None,
     expander: LLM | None = None,
 ) -> AgentState:
     """Full RAG flow: intent analysis and retrieval (run_retrieval), then synthesis."""
-    return synthesize_answer(run_retrieval(query, kb, k, mode, expander), llm)
+    return synthesize_answer(run_retrieval(query, kb, k, options, expander), llm)

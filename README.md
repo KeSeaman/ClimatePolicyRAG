@@ -136,7 +136,7 @@ uv run climate-rag ask "Barriers to carbon capture?" --topic "carbon capture sto
 # Answer and score the evaluation questions on the frozen corpus in eval/index
 uv run climate-rag eval              # -> notes/Test_Queries.md + notes/Test_Queries.json
 uv run climate-rag eval --judge      # also score claim-level faithfulness with an LLM judge
-uv run climate-rag eval --retrieval-only --retrieval hybrid   # retrieval metrics in seconds
+uv run climate-rag eval --retrieval-only --split dev --retrieval hybrid   # metrics in seconds
 ```
 
 `python -m climate_rag ...` works too. Example output:
@@ -170,6 +170,7 @@ All settings can be set as environment variables (or in a `.env` file):
 | `CLIMATE_RAG_JUDGE_BASE_URL` / `_API_KEY` | (`LLM_*`) | Endpoint and key for the judge |
 | `CLIMATE_RAG_RETRIEVAL_MODE` | `vector` | `vector`, or `hybrid` (vector + BM25 keywords, rank-fused) |
 | `CLIMATE_RAG_QUERY_EXPANSION` | `false` | Also search with LLM-written rephrasings of each question |
+| `CLIMATE_RAG_FUSION_POOL` / `_RRF_K` / `_ORIGINAL_QUERY_WEIGHT` | unset / `60` / `1.0` | Rank fusion: candidates per ranking, RRF constant, weight of the question vs each rephrasing (use 2-3 with `--expand`) |
 | `CLIMATE_RAG_TOP_K` | `5` | Chunks retrieved per question |
 | `CLIMATE_RAG_CHUNK_CHARS` | `2000` | Maximum chunk size |
 
@@ -189,9 +190,10 @@ To use OpenAI instead of Ollama, for example:
 
 ## 📏 Evaluation
 
-`climate-rag eval` answers the questions in `eval/gold.json` against the frozen corpus in
+`climate-rag eval` answers the 40 questions in `eval/gold.json` against the frozen corpus in
 `eval/index` (80 documents from 2026-10-19, committed so runs are comparable) and scores each
-answer in three layers:
+answer in three layers. Questions are split 20 dev / 20 test: tune retrieval on
+`--split dev` and score `--split test` only to confirm a choice.
 
 1.  **Retrieval**: document-level recall@k and reciprocal rank against hand-labelled relevant
     documents. Labels are tied to the corpus by its `corpus_id` and skipped for any other corpus.
@@ -250,12 +252,13 @@ ClimatePolicyRAG/
 
 *   Saved indexes are rebuilt, not updated: re-running `ingest` replaces the corpus.
 *   Intent classification is keyword based; it only steers the answer's emphasis.
-*   The eval set is small (10 questions, 46 relevance labels made by one annotator), so treat
-    scores as regression signals rather than benchmarks.
+*   The eval set is modest (40 questions, 106 relevance labels made by one annotator who had
+    read the documents), so treat scores as regression signals rather than benchmarks.
 *   Retrieval misses vocabulary gaps: documents about "MRV" and national inventories are not
     matched to a question about "NDC tracking". Query expansion recovers some of them but
-    costs recall elsewhere; on this small eval set no retrieval mode is reliably better than
-    plain vector search (`notes/retrieval_experiments.md`).
+    costs recall elsewhere unless the original question is weighted higher. On a held-out test
+    split no retrieval mode is reliably better than plain vector search, which already reaches
+    about 0.9 recall@5 on this 80-document corpus (`notes/retrieval_experiments.md`).
 *   A model judging its own answers is not a usable judge: with `gemma3:4b` as both
     generator and judge, faithfulness came out 1.00 on every question, including an answer
     claiming CO2 has a GWP of 42 (it is 1 by definition). The number check cannot catch that
@@ -266,7 +269,7 @@ ClimatePolicyRAG/
 ## 🔮 Roadmap
 
 -   [ ] More sources from `notes/data_sources.md` (Climate Watch, OWID CO2, climate-laws.org).
--   [ ] A larger eval set with a dev/test split, then tune rank fusion (pool size, weighting
-        the original query) for hybrid retrieval and query expansion.
+-   [ ] A much larger corpus (hundreds to thousands of documents) so retrieval methods can be
+        told apart, with eval questions written blind to the documents' wording.
 -   [ ] Incremental ingestion into an existing index; Qdrant backend for large corpora.
 -   [ ] Docker image and a small web UI.
