@@ -1,0 +1,102 @@
+{
+  "corpus_id": "c1c89a67bbb7",
+  "note": "Document-level relevance labels for the frozen corpus in eval/index. Labelled by Claude Code on 2026-10-19 by reading every document's title and abstract (not from retrieval results): a document is relevant if it contains information that helps answer the question, not merely a passing mention. Judgement calls; review before relying on them.",
+  "questions": [
+    {
+      "question": "What are the key goals of the Paris Agreement regarding temperature limits?",
+      "relevant": [
+        "http://arxiv.org/abs/2104.05506v2",
+        "http://arxiv.org/abs/2412.13855v1",
+        "http://arxiv.org/abs/2504.12832v1",
+        "http://arxiv.org/abs/2512.13474v1"
+      ]
+    },
+    {
+      "question": "How does carbon pricing impact developing economies?",
+      "relevant": [
+        "http://arxiv.org/abs/2402.03800v1",
+        "http://arxiv.org/abs/2512.24520v2",
+        "http://arxiv.org/abs/2409.18981v1"
+      ]
+    },
+    {
+      "question": "What are the latest trends in renewable energy adoption in Europe?",
+      "relevant": [
+        "http://arxiv.org/abs/1801.05290v2",
+        "http://arxiv.org/abs/2202.02258v2",
+        "http://arxiv.org/abs/1401.4298v1",
+        "http://arxiv.org/abs/2003.08882v2",
+        "http://arxiv.org/abs/2208.09169v2",
+        "wb_P515275"
+      ]
+    },
+    {
+      "question": "Explain the role of forestry in carbon sequestration strategies.",
+      "relevant": [
+        "http://arxiv.org/abs/2205.10641v7",
+        "http://arxiv.org/abs/1702.05249v2",
+        "http://arxiv.org/abs/2511.22720v2",
+        "http://arxiv.org/abs/1505.05669v2",
+        "http://arxiv.org/abs/2505.11512v1",
+        "http://arxiv.org/abs/2009.10263v1",
+        "wb_P507869",
+        "wb_P507271",
+        "wb_P510697"
+      ]
+    },
+    {
+      "question": "What is the impact of methane emissions on global warming compared to CO2?",
+      "relevant": [
+        "http://arxiv.org/abs/2104.05506v2",
+        "http://arxiv.org/abs/2308.11003v1",
+        "http://arxiv.org/abs/2512.14076v1"
+      ]
+    },
+    {
+      "question": "How are NDCs (Nationally Determined Contributions) being tracked?",
+      "relevant": [
+        "wb_P513679",
+        "http://arxiv.org/abs/2607.16931v1",
+        "http://arxiv.org/abs/2505.11512v1",
+        "http://arxiv.org/abs/2107.10317v2"
+      ]
+    },
+    {
+      "question": "What are the projected sea-level rises by 2100 under different scenarios?",
+      "relevant": [
+        "http://arxiv.org/abs/1810.08145v1",
+        "http://arxiv.org/abs/2308.02460v1",
+        "http://arxiv.org/abs/2312.08031v2",
+        "http://arxiv.org/abs/1510.08550v3"
+      ]
+    },
+    {
+      "question": "Describe the financial mechanisms available for climate adaptation.",
+      "relevant": [
+        "http://arxiv.org/abs/2207.02064v1",
+        "http://arxiv.org/abs/2210.11525v1",
+        "http://arxiv.org/abs/2501.08004v2",
+        "http://arxiv.org/abs/2211.16947v1",
+        "wb_P518719"
+      ]
+    },
+    {
+      "question": "What are the major barriers to implementing carbon capture and storage technologies?",
+      "relevant": [
+        "http://arxiv.org/abs/2005.13688v1",
+        "http://arxiv.org/abs/2009.03600v1",
+        "http://arxiv.org/abs/2305.05165v1",
+        "http://arxiv.org/abs/2409.18981v1"
+      ]
+    },
+    {
+      "question": "How does agriculture contribute to greenhouse gas emissions?",
+      "relevant": [
+        "http://arxiv.org/abs/2305.13253v1",
+        "http://arxiv.org/abs/2006.02840v1",
+        "http://arxiv.org/abs/2407.05099v1",
+        "http://arxiv.org/abs/2308.11632v1"
+      ]
+    }
+  ]
+}

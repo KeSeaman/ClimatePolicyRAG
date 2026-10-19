@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ArXiv Query</title>
+  <entry>
+    <id>http://arxiv.org/abs/2401.00001v1</id>
+    <published>2024-01-02T10:00:00Z</published>
+    <title>Carbon Pricing and
+      Distributional Outcomes</title>
+    <summary>  We study how carbon taxes affect households
+      in developing economies. </summary>
+    <author><name>Ada Lovelace</name></author>
+    <author><name>Alan Turing</name></author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.00002v1</id>
+    <title>Paper with no abstract</title>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.00003v1</id>
+    <title>No authors listed</title>
+    <summary>Methane abatement in agriculture.</summary>
+  </entry>
+</feed>

@@ -1,49 +1,61 @@
-from pydantic import BaseModel, Field, ConfigDict
-from  enum import Enum
-from typing import List, Optional, Dict
-from datetime import datetime
+from datetime import UTC, datetime
+from enum import StrEnum
 
-class Intent(str, Enum):
+from pydantic import BaseModel, ConfigDict
+
+
+class Intent(StrEnum):
     SCIENTIFIC = "scientific"
     POLICY = "policy"
     IMPLEMENTATION = "implementation"
     GENERAL = "general"
 
+
 class RetrievedContext(BaseModel):
     model_config = ConfigDict(frozen=True)
-    
+
     doc_id: str
+    # The ingested document this chunk came from (== doc_id when it was not split)
+    parent_id: str
     content: str
     score: float
     source: str
+    title: str | None = None
+    url: str | None = None
+
 
 class AgentState(BaseModel):
     """
     Immutable state passed through the functional pipeline.
-    Each agent returns a NEW instance of AgentState.
+    Each agent returns a NEW instance of AgentState; collections are tuples so
+    nothing can be mutated in place either.
     """
+
     model_config = ConfigDict(frozen=True)
-    
+
     query: str
     intent: Intent = Intent.GENERAL
-    # Contexts retrieved from vector store
-    contexts: List[RetrievedContext] = Field(default_factory=list)
+    # Every query sent to the index: the question, plus any LLM expansions
+    search_queries: tuple[str, ...] = ()
+    # Contexts retrieved from the vector index, best match first
+    contexts: tuple[RetrievedContext, ...] = ()
     # Synthesized answer
-    answer: Optional[str] = None
+    answer: str | None = None
     # Agent chain execution log
-    logs: List[str] = Field(default_factory=list)
-    # Global metadata (e.g. user id, timestamp)
-    metadata: Dict[str, str] = Field(default_factory=dict)
+    logs: tuple[str, ...] = ()
 
     def add_log(self, message: str) -> "AgentState":
-        new_logs = self.logs + [f"{datetime.utcnow().isoformat()}: {message}"]
-        return self.model_copy(update={"logs": new_logs})
+        entry = f"{datetime.now(UTC).isoformat()}: {message}"
+        return self.model_copy(update={"logs": (*self.logs, entry)})
 
     def update_intent(self, new_intent: Intent) -> "AgentState":
         return self.model_copy(update={"intent": new_intent})
-        
-    def add_contexts(self, new_contexts: List[RetrievedContext]) -> "AgentState":
-        return self.model_copy(update={"contexts": self.contexts + new_contexts})
+
+    def set_search_queries(self, queries: tuple[str, ...]) -> "AgentState":
+        return self.model_copy(update={"search_queries": queries})
+
+    def add_contexts(self, new_contexts: tuple[RetrievedContext, ...]) -> "AgentState":
+        return self.model_copy(update={"contexts": (*self.contexts, *new_contexts)})
 
     def set_answer(self, answer: str) -> "AgentState":
         return self.model_copy(update={"answer": answer})

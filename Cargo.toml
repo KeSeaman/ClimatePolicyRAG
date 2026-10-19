@@ -1,19 +1,20 @@
 [package]
 name = "climate_core"
-version = "0.1.0"
+version = "0.3.0"
 edition = "2021"
 
 [lib]
 name = "climate_core"
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-pyo3 = { version = "0.20.0", features = ["extension-module", "abi3-py311"] }
-tokio = { version = "1.36.0", features = ["full"] }
+# extension-module is enabled by maturin (see pyproject.toml) so `cargo test` can link libpython.
+pyo3 = { version = "0.30", features = ["abi3-py312"] }
+rayon = "1.10" # Parallel similarity scoring
 serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-thiserror = "1.0"
-anyhow = "1.0"
-rayon = "1.9.0" # For parallel data processing
-tracing = "0.1" # Structured logging
-ndarray = "0.15" # Linear algebra
+serde_json = "1.0" # documents.jsonl in saved indexes
+numpy = "0.30" # Read float32 arrays in place (rust-numpy, must match the pyo3 version)
+
+[profile.release]
+lto = "fat"
+codegen-units = 1

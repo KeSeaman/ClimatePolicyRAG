@@ -1,50 +1,78 @@
-import httpx
+import asyncio
+import re
+import time
 import xml.etree.ElementTree as ET
-from typing import List
-from climate_rag.ingest.base import Ingestor
-from climate_core import Document
+
+import httpx
+
+from climate_rag._core import Document
+from climate_rag.ingest.base import get_with_retry
+
+_NS = {"atom": "http://www.w3.org/2005/Atom"}
+_STOPWORDS = frozenset({"a", "an", "and", "the", "of", "in", "on", "for", "to", "by", "with"})
+
+
+def build_search_query(query: str) -> str:
+    """
+    AND together every term, e.g. "carbon pricing" -> "all:carbon AND all:pricing".
+    A bare "all:carbon pricing" only applies the field to the first word and returns
+    near-random results once sorted by date.
+    """
+    terms = [t for t in re.findall(r"[\w-]+", query.lower()) if t not in _STOPWORDS]
+    return " AND ".join(f"all:{t}" for t in terms)
+
+
+def _text(node: ET.Element, path: str) -> str:
+    found = node.find(path, _NS)
+    return " ".join((found.text or "").split()) if found is not None else ""
+
+
+def parse_atom(xml_content: str) -> list[Document]:
+    docs = []
+    for entry in ET.fromstring(xml_content).findall("atom:entry", _NS):
+        doc_id, title, summary = (_text(entry, f"atom:{f}") for f in ("id", "title", "summary"))
+        # Error responses come back as a single entry without an abstract.
+        if not (doc_id and title and summary):
+            continue
+        authors = [_text(a, "atom:name") for a in entry.findall("atom:author", _NS)]
+
+        docs.append(Document(
+            id=doc_id,
+            content=f"Title: {title}\nAbstract: {summary}",
+            metadata={
+                "source": "arxiv",
+                "title": title,
+                "authors": ", ".join(a for a in authors if a),
+                "published": _text(entry, "atom:published")[:10],
+                "url": doc_id,
+            },
+        ))
+    return docs
+
 
 class ArxivIngestor:
+    name = "arxiv"
     BASE_URL = "https://export.arxiv.org/api/query"
 
-    async def fetch(self, query: str = "climate change", limit: int = 5) -> List[Document]:
+    def __init__(self, min_interval: float = 3.0) -> None:
+        # arXiv's API terms ask for at most one request every 3 seconds.
+        self._min_interval = min_interval
+        self._lock = asyncio.Lock()
+        self._last_request = float("-inf")
+
+    async def fetch(self, client: httpx.AsyncClient, query: str, limit: int = 5) -> list[Document]:
         params = {
-            "search_query": f"all:{query}",
+            "search_query": build_search_query(query),
             "start": 0,
             "max_results": limit,
-            "sortBy": "submittedDate",
-            "sortOrder": "descending"
+            "sortBy": "relevance",
         }
-        
-        async with httpx.AsyncClient(follow_redirects=True) as client:
-            response = await client.get(self.BASE_URL, params=params)
-            response.raise_for_status()
-            
-        return self._parse_atom(response.text)
-
-    def _parse_atom(self, xml_content: str) -> List[Document]:
-        root = ET.fromstring(xml_content)
-        # Atom namespace
-        ns = {'atom': 'http://www.w3.org/2005/Atom'}
-        
-        docs = []
-        for entry in root.findall('atom:entry', ns):
-            doc_id = entry.find('atom:id', ns).text
-            title = entry.find('atom:title', ns).text.strip().replace('\n', ' ')
-            summary = entry.find('atom:summary', ns).text.strip().replace('\n', ' ')
-            author = entry.find('atom:author/atom:name', ns).text
-            
-            # Combine title and summary for the content
-            content = f"Title: {title}\nAbstract: {summary}"
-            
-            docs.append(Document(
-                id=doc_id,
-                content=content,
-                metadata={
-                    "source": "arxiv",
-                    "author": author,
-                    "title": title
-                }
-            ))
-            
-        return docs
+        async with self._lock:
+            wait = self._last_request + self._min_interval - time.monotonic()
+            if wait > 0:
+                await asyncio.sleep(wait)
+            try:
+                response = await get_with_retry(client, self.BASE_URL, params)
+            finally:
+                self._last_request = time.monotonic()
+        return parse_atom(response.text)

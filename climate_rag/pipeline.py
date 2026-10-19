@@ -1,27 +1,42 @@
-from toolz import pipe
 from functools import partial
-from climate_rag.models import AgentState
+
+from toolz import pipe
+
 from climate_rag.agents.analysis import analyze_intent
 from climate_rag.agents.retrieval import retrieve_documents
 from climate_rag.agents.synthesis import synthesize_answer
-import climate_core
+from climate_rag.knowledge_base import KnowledgeBase, SearchMode
+from climate_rag.llm import LLM
+from climate_rag.models import AgentState
 
-def run_rag_pipeline(query: str, index: climate_core.VectorIndex) -> AgentState:
+
+def run_retrieval(
+    query: str,
+    kb: KnowledgeBase,
+    k: int = 5,
+    mode: SearchMode = "vector",
+    expander: LLM | None = None,
+) -> AgentState:
     """
-    Orchestrates the RAG flow using functional composition.
+    Intent analysis and retrieval, composed functionally; also used on its own for
+    retrieval-only evaluation. Dependencies are bound with partial so every stage is
+    AgentState -> AgentState.
     """
-    initial_state = AgentState(query=query)
-    
-    # We bind the 'index' to the retrieval function using partial
-    # to maintain the single-argument signature expected by the pipe,
-    # or we can wrap it.
-    retrieve_with_index = partial(retrieve_documents, index=index, k=3)
-    
-    final_state = pipe(
-        initial_state,
+    state: AgentState = pipe(
+        AgentState(query=query),
         analyze_intent,
-        retrieve_with_index,
-        synthesize_answer
+        partial(retrieve_documents, kb=kb, k=k, mode=mode, expander=expander),
     )
-    
-    return final_state
+    return state
+
+
+def run_rag_pipeline(
+    query: str,
+    kb: KnowledgeBase,
+    llm: LLM,
+    k: int = 5,
+    mode: SearchMode = "vector",
+    expander: LLM | None = None,
+) -> AgentState:
+    """Full RAG flow: intent analysis and retrieval (run_retrieval), then synthesis."""
+    return synthesize_answer(run_retrieval(query, kb, k, mode, expander), llm)

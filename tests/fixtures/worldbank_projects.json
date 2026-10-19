@@ -1,0 +1,17 @@
+{
+  "rows": 3, "total": "3",
+  "projects": {
+    "P100001": {
+      "id": "P100001", "project_name": "Coastal Resilience Program",
+      "project_abstract": "Finances sea walls and mangrove restoration to adapt to sea level rise.",
+      "countryshortname": "Bangladesh", "boardapprovaldate": "2025-03-01T00:00:00Z",
+      "status": "Active", "totalamt": "250,000,000"
+    },
+    "P100002": {
+      "id": "P100002", "project_name": "Legacy Abstract Format",
+      "project_abstract": {"cdata": "Supports climate-smart agriculture."},
+      "countryshortname": "Kenya", "totalamt": "0"
+    },
+    "P100003": {"id": "P100003", "project_name": "Project without abstract"}
+  }
+}
