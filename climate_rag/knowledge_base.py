@@ -6,6 +6,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal
 
+from pydantic import BaseModel, ConfigDict
+
 from climate_rag._core import Document, SearchResult, VectorIndex
 from climate_rag.embeddings import Embedder
 
@@ -14,6 +16,21 @@ SearchMode = Literal["vector", "hybrid"]
 # Standard RRF constant (Cormack et al., 2009): damps the weight of top ranks so no single
 # ranking dominates the fused order.
 RRF_K = 60
+
+
+
+class SearchOptions(BaseModel):
+    """How rankings are produced and fused. The defaults are plain vector search."""
+
+    model_config = ConfigDict(frozen=True)
+
+    mode: SearchMode = "vector"
+    # Candidates taken from each ranking before fusion; None means max(4k, 20).
+    pool: int | None = None
+    rrf_k: int = RRF_K
+    # Weight of the original question's rankings relative to each expansion's (1 = equal).
+    original_weight: float = 1.0
+
 
 MANIFEST_FILE = "manifest.json"
 DOCUMENTS_FILE = "documents.jsonl"  # written by the Rust index alongside embeddings.f32
@@ -57,18 +74,22 @@ def chunk_document(doc: Document, max_chars: int) -> list[Document]:
 
 
 def reciprocal_rank_fusion(
-    rankings: Sequence[Sequence[SearchResult]], k: int
+    rankings: Sequence[Sequence[SearchResult]],
+    k: int,
+    weights: Sequence[float] | None = None,
+    rrf_k: int = RRF_K,
 ) -> list[SearchResult]:
     """
-    Merge ranked lists by summing 1 / (RRF_K + rank) per document. Rank-based, so it can
-    combine rankings whose scores are not comparable (cosine similarity vs BM25). Each
+    Merge ranked lists by summing weight / (rrf_k + rank) per document. Rank-based, so it
+    can combine rankings whose scores are not comparable (cosine similarity vs BM25). Each
     returned result's score is replaced by its fused score.
     """
+    weights = weights if weights is not None else [1.0] * len(rankings)
     fused: dict[str, float] = {}
     first_seen: dict[str, SearchResult] = {}
-    for ranking in rankings:
+    for ranking, weight in zip(rankings, weights, strict=True):
         for rank, result in enumerate(ranking, 1):
-            fused[result.doc_id] = fused.get(result.doc_id, 0.0) + 1 / (RRF_K + rank)
+            fused[result.doc_id] = fused.get(result.doc_id, 0.0) + weight / (rrf_k + rank)
             first_seen.setdefault(result.doc_id, result)
     # sorted() is stable, so ties keep the order in which documents were first ranked.
     best = sorted(fused, key=lambda doc_id: -fused[doc_id])[:k]
@@ -108,26 +129,34 @@ class KnowledgeBase:
         return len(chunks)
 
     def search(
-        self, queries: str | Sequence[str], k: int, mode: SearchMode = "vector"
+        self,
+        queries: str | Sequence[str],
+        k: int,
+        options: SearchOptions | None = None,
     ) -> list[SearchResult]:
         """
-        Top-k chunks for one query or several phrasings of it. A single vector query
-        returns cosine scores; anything fused (hybrid mode, several queries) returns RRF
-        scores, which only order results and are not comparable to cosine similarity.
+        Top-k chunks for one query or several phrasings of it, the first being the original
+        question. A single vector query returns cosine scores; anything fused (hybrid mode,
+        several queries) returns RRF scores, which only order results.
         """
+        options = options or SearchOptions()
         queries = [queries] if isinstance(queries, str) else list(queries)
-        if mode == "vector" and len(queries) == 1:
+        if options.mode == "vector" and len(queries) == 1:
             return self.index.search(self.embedder.embed_query(queries[0]), k)
 
-        # Each ranking contributes a deeper candidate pool than k so fusion can promote
-        # documents that rank moderately in several lists.
-        pool = max(4 * k, 20)
+        # A candidate pool deeper than k lets fusion promote documents that rank moderately
+        # in several lists; too deep and generic documents win on consensus alone.
+        pool = options.pool or max(4 * k, 20)
         rankings: list[list[SearchResult]] = []
-        for query in queries:
+        weights: list[float] = []
+        for i, query in enumerate(queries):
+            weight = options.original_weight if i == 0 else 1.0
             rankings.append(self.index.search(self.embedder.embed_query(query), pool))
-            if mode == "hybrid":
+            weights.append(weight)
+            if options.mode == "hybrid":
                 rankings.append(self.index.keyword_search(query, pool))
-        return reciprocal_rank_fusion(rankings, k)
+                weights.append(weight)
+        return reciprocal_rank_fusion(rankings, k, weights, options.rrf_k)
 
     def corpus_id(self) -> str:
         """Fingerprint of the indexed chunk ids; ties relevance labels to one corpus."""

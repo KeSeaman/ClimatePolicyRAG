@@ -37,6 +37,11 @@ class Settings(BaseSettings):
     retrieval_mode: Literal["vector", "hybrid"] = "vector"
     # Ask the LLM for alternative phrasings of each question and search with all of them.
     query_expansion: bool = False
+    # Rank fusion (hybrid mode or expansion): candidates per ranking (unset: max(4k, 20)),
+    # the RRF constant, and the weight of the original question vs each rephrasing.
+    fusion_pool: int | None = None
+    rrf_k: int = 60
+    original_query_weight: float = 1.0
 
     top_k: int = 5
     chunk_chars: int = 2000
