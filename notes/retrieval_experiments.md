@@ -1,5 +1,7 @@
 # Retrieval Experiments: Closing the Vocabulary Gap
 
+## Round 1: 10 Questions
+
 **Date**: 2026-10-19 · **Corpus**: `eval/index` (`c1c89a67bbb7`, 80 documents, 124 chunks)
 · **Labels**: `eval/gold.json` (10 questions, 46 relevant documents) · **k** = 5
 
@@ -60,11 +62,51 @@ are opt-in (`--retrieval hybrid`, `--expand`, or the `CLIMATE_RAG_RETRIEVAL_MODE
 configurations put a relevant document first more often (MRR 0.90 vs 0.85), which comes down
 to one question.
 
-The vocabulary gap is only partly and unreliably closed. Next steps, in order:
+The vocabulary gap is only partly and unreliably closed. Next step: a larger eval set with a
+dev/test split, and weighting the original query above the expansions (round 2 below).
 
-1.  Grow the eval set to roughly 40+ questions with a dev/test split, so fusion settings (pool
-    size, RRF constant, extra weight on the original query) can be tuned on dev and confirmed
-    on test.
-2.  Then try weighting the original query's rankings above the expansions, the most direct
-    fix for the dilution above.
-3.  Consider expanding with a hypothetical answer passage (HyDE) instead of short queries.
+---
+
+# Round 2: 40 Questions with a Dev/Test Split
+
+**Labels**: 40 questions, 106 relevant documents, labelled from the full text of every
+document. The 10 original questions (already inspected) are dev; the 30 new ones were split
+10 dev / 20 test by a seeded shuffle before any retrieval ran on them. Two original labels were
+revised after the full-text reread (see the note in `eval/gold.json`), which is why the vector
+baseline differs from round 1.
+
+**Procedure**: expansions generated once per question (temperature 0) and cached; 85
+configurations searched on dev only (candidate pool 5/10/20/40 × RRF constant 10/30/60 ×
+original-question weight 1/2/3 for expansion); the best per family fixed; then each scored
+once on test.
+
+| Retrieval (settings chosen on dev) | Dev recall / MRR | Test recall / MRR |
+|---|---|---|
+| vector (baseline) | 0.880 / **0.975** | 0.940 / 0.925 |
+| hybrid (pool 10) | 0.866 / 0.967 | 0.940 / **0.963** |
+| vector + expansion (pool 40, RRF 10, weight 3) | 0.890 / 0.975 | 0.940 / 0.887 |
+| hybrid + expansion (pool 20, RRF 30, weight 2) | **0.905** / 0.925 | **0.963** / 0.925 |
+
+On test, the four configurations disagree on only three questions. Hybrid + expansion's lead
+is one question net: it recovers "Which World Bank budget-support loans tie economic reforms to
+climate commitments?" (0 → 0.67; the documents say "Development Policy Operation") but drops a
+document for the drought-adaptation question. Hybrid's MRR gain on test reverses on dev.
+
+## Findings
+
+-   **Weighting the original question counters the dilution seen in round 1.** Averaged over
+    the pool and RRF settings, dev recall for vector + expansion rises from 0.822 (weight 1)
+    to 0.850 (weight 2) and 0.866 (weight 3), and for hybrid + expansion from 0.868 to 0.883
+    (weight 2; 0.876 at weight 3). Even so, it only brings expansion level with plain vector
+    search (0.880).
+-   **No configuration is reliably better than vector search here.** Dev and test disagree on
+    the ranking, and the differences are one or two documents.
+-   **The corpus is the limit, not the method.** With 80 documents, vector search already
+    reaches about 0.9 recall@5; the residual misses are umbrella or jargon questions
+    ("budget-support loans", "NDC tracking"). Distinguishing retrieval methods needs a corpus
+    with many more distractors (hundreds to thousands of documents) and questions written
+    without looking at the target documents' wording.
+
+Vector search remains the default. The fusion settings are exposed as
+`CLIMATE_RAG_FUSION_POOL`, `CLIMATE_RAG_RRF_K` and `CLIMATE_RAG_ORIGINAL_QUERY_WEIGHT`; if
+you enable expansion, use an original-question weight of 2-3.
