@@ -1,22 +1,19 @@
-#![allow(non_local_definitions)]
 use pyo3::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-#[pyclass]
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[pyclass(get_all, set_all, from_py_object, module = "climate_rag._core")]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Document {
-    #[pyo3(get, set)]
     pub id: String,
-    #[pyo3(get, set)]
     pub content: String,
-    #[pyo3(get, set)]
     pub metadata: HashMap<String, String>,
 }
 
 #[pymethods]
 impl Document {
     #[new]
+    #[pyo3(signature = (id, content, metadata=None))]
     pub fn new(id: String, content: String, metadata: Option<HashMap<String, String>>) -> Self {
         Document {
             id,
@@ -24,15 +21,26 @@ impl Document {
             metadata: metadata.unwrap_or_default(),
         }
     }
+
+    fn __repr__(&self) -> String {
+        format!("Document(id={:?}, content_len={})", self.id, self.content.len())
+    }
 }
 
-#[pyclass]
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[pyclass(get_all, module = "climate_rag._core")]
+#[derive(Debug, Clone)]
 pub struct SearchResult {
-    #[pyo3(get)]
     pub doc_id: String,
-    #[pyo3(get)]
+    // Settable so rank fusion in Python can replace it with the fused score.
+    #[pyo3(set)]
     pub score: f32,
-    #[pyo3(get)]
-    pub content_preview: String,
+    pub content: String,
+    pub metadata: HashMap<String, String>,
+}
+
+#[pymethods]
+impl SearchResult {
+    fn __repr__(&self) -> String {
+        format!("SearchResult(doc_id={:?}, score={:.4})", self.doc_id, self.score)
+    }
 }

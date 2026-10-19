@@ -1,0 +1,1478 @@
+{
+  "summary": {
+    "questions": 10,
+    "mean_recall": 0.777,
+    "mrr": 0.85,
+    "answers_with_valid_citations": 10,
+    "answers_with_ungrounded_numbers": 0,
+    "mean_faithfulness": 1.0,
+    "judge_errors": 0,
+    "mean_seconds": 65.214
+  },
+  "settings": {
+    "embedder": "fastembed:BAAI/bge-small-en-v1.5",
+    "llm": "gemma3-4b-8t",
+    "judge": "gemma3-4b-8t",
+    "k": 5
+  },
+  "corpus": {
+    "format_version": 1,
+    "created": "2026-10-19T19:03:22+00:00",
+    "embedder": "fastembed:BAAI/bge-small-en-v1.5",
+    "dimension": 384,
+    "chunk_chars": 2000,
+    "chunks": 124,
+    "corpus_id": "c1c89a67bbb7",
+    "documents": 80,
+    "sources": {
+      "arxiv": 50,
+      "world_bank_projects": 30
+    },
+    "topics": [
+      "Paris Agreement temperature goal",
+      "carbon pricing developing countries",
+      "renewable energy Europe",
+      "forest carbon sequestration",
+      "methane emissions",
+      "nationally determined contributions",
+      "sea level rise projections",
+      "climate adaptation finance",
+      "carbon capture storage",
+      "agriculture greenhouse gas emissions"
+    ],
+    "limit_per_topic": 5
+  },
+  "results": [
+    {
+      "question": "What are the key goals of the Paris Agreement regarding temperature limits?",
+      "intent": "policy",
+      "answer": "According to source [1], the Paris Agreement establishes two key temperature goals: limiting global warming to 1.5\u00b0C and 2\u00b0C. The time horizons aligned with these goals are 24 years (for 1.5\u00b0C) and 58 years (for 2\u00b0C), as calculated from the Intergovernmental Panel on Climate Change Special Report on Global Warming of 1.5 C Scenario Database. These time horizons are used to quantify emission metrics, with associated Global Warming Potential (GWP) and Global Temperature Change Potential (GTP) values determined for each goal. [2] highlights the importance of reporting probabilities rather than point estimates to inform decision-making regarding breaching these limits, with simulations showing a high probability of exceeding the 1.5\u00b0C limit by 2042 if no action is taken. [5] confirms the alignment of the Kenya Contingent Emergency Response Project with the Paris Agreement\u2019s goals of climate adaptation and resilience.",
+      "seconds": 58.80324518099951,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/2104.05506v2",
+          "parent_id": "http://arxiv.org/abs/2104.05506v2",
+          "content": "Title: Global temperature goals should determine the time horizons for greenhouse gas emission metrics\nAbstract: Emission metrics, a crucial tool in setting effective equivalences between greenhouse gases, currently require a subjective, arbitrary choice of time horizon. Here, we propose a novel framework that uses a specific temperature goal to calculate the time horizon that aligns with scenarios achieving that temperature goal. We analyze the Intergovernmental Panel on Climate Change Special Report on Global Warming of 1.5 C Scenario Database to find that time horizons that align with the 1.5 and 2 C global warming goals of the Paris Agreement are 24 [90% prediction interval: 7, 41] and 58 [90% PI: 41, 74] years respectively. We then use these time horizons to quantify time-dependent emission metrics with methane as our main example. We find that the Global Warming Potential values that align with the 1.5 and 2 C goals are GWP1.5 C = 75 [90% PI: 54, 107] and GWP2 C = 42 [90% PI: 35, 54]; for the Global Temperature change Potential they are GTP1.5 C = 41 [90% PI: 16, 102] and GTP2 C = 9 [90% PI: 7, 16]. The most commonly used time horizon, 100 years, underestimates methane emission metrics by 34-38% relative to the values we calculate that align with the 2 C goal and 63-87% relative to the 1.5 C goal. To best align emission metrics with the 1.5 C goal of the Paris Agreement, we recommend a 24-year time horizon, using 2045 as the endpoint time, with its associated GWP1.5 C = 75 and GTP1.5 C = 41.",
+          "score": 0.7564866542816162,
+          "source": "arxiv",
+          "title": "Global temperature goals should determine the time horizons for greenhouse gas emission metrics",
+          "url": "http://arxiv.org/abs/2104.05506v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2412.13855v1",
+          "parent_id": "http://arxiv.org/abs/2412.13855v1",
+          "content": "Title: Breaching 1.5\u00b0C: Give me the odds\nAbstract: Climate change communication is crucial to raising awareness and motivating action. In the context of breaching the limits set out by the Paris Agreement, we argue that climate scientists should move away from point estimates and towards reporting probabilities. Reporting probabilities will provide policymakers with a range of possible outcomes and will allow them to make informed timely decisions. To achieve this goal, we propose a method to calculate the probability of breaching the limits set out by the Paris Agreement. The method can be summarized as predicting future temperatures under different scenarios and calculating the number of possible outcomes that breach the limits as a proportion of the total number of outcomes. The probabilities can be computed for different time horizons and can be updated as new data become available. As an illustration, we performed a simulation study to investigate the probability of breaching the limits in a statistical model. Our results show that the probability of breaching the 1.5\u00b0C limit is already greater than zero for 2024. Moreover, the probability of breaching the limit is greater than 99% by 2042 if no action is taken to reduce greenhouse gas emissions. Our methodology is simple to implement and can easily be extended to more complex models of the climate system. We encourage climate model developers to include the probabilities of breaching the limits in their reports.",
+          "score": 0.7254045009613037,
+          "source": "arxiv",
+          "title": "Breaching 1.5\u00b0C: Give me the odds",
+          "url": "http://arxiv.org/abs/2412.13855v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2512.13474v1",
+          "parent_id": "http://arxiv.org/abs/2512.13474v1",
+          "content": "Title: Mapping of the system of software-related emissions and shared responsibilities\nAbstract: The global climate is experiencing a rapid and unprecedented warming trend. The ICT sector is a notable contributor to global greenhouse gas emissions, with its environmental impact continuing to expand. Addressing this issue is vital for achieving the objectives of the Paris Agreement, particularly the goal of limiting global temperature rise to 1.5\u00b0C. At the European Union level, regulatory measures such as the CSRD and the CSDD impose obligations on companies, including those within the ICT sector, to recognize and mitigate their environmental footprint. This study provides a comprehensive system mapping aimed at enhancing the awareness and understanding of software-related emissions and the corresponding responsibilities borne by the ICT sector. The mapping identifies the primary sources of carbon emissions and energy consumption within the ICT domain while also outlining the key responsibilities of the stakeholders accountable throughout the software lifecycle.",
+          "score": 0.6698828935623169,
+          "source": "arxiv",
+          "title": "Mapping of the system of software-related emissions and shared responsibilities",
+          "url": "http://arxiv.org/abs/2512.13474v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2305.05165v1",
+          "parent_id": "http://arxiv.org/abs/2305.05165v1",
+          "content": "Title: Assessing the optimal contributions of renewables and carbon capture and storage toward carbon neutrality by 2050\nAbstract: Building on the carbon reduction targets agreed in the Paris Agreements, many nations have renewed their efforts toward achieving carbon neutrality by the year 2050. In line with this ambitious goal, nations are seeking to understand the appropriate combination of technologies which will enable the required reductions in such a way that they are appealing to investors. Around the globe, solar and wind power lead in terms of renewable energy deployment, while carbon capture and storage (CCS) is scaling up toward making a significant contribution to deep carbon cuts. Using Japan as a case study nation, this research proposes a linear optimization modeling approach to identify the potential contributions of renewables and CCS toward maximizing carbon reduction and identifying their economic merits over time. Results identify that the combination of these three technologies could enable a carbon dioxide emission reduction of between 55 and 67 percent in the energy sector by 2050 depending on resilience levels and CCS deployment regimes. Further reductions are likely to emerge with increased carbon pricing over time.",
+          "score": 0.6616004109382629,
+          "source": "arxiv",
+          "title": "Assessing the optimal contributions of renewables and carbon capture and storage toward carbon neutrality by 2050",
+          "url": "http://arxiv.org/abs/2305.05165v1"
+        },
+        {
+          "doc_id": "wb_P518719#1",
+          "parent_id": "wb_P518719",
+          "content": "The operation is aligned with the World Bank Group Country Partnership Framework for Kenya (FY2023\u2013FY2028), in particular CPF Objective 6 on strengthening national systems for disaster preparedness and climate resilience. It also contributes to Kenya's Nationally Determined Contribution (NDC), National Adaptation Plan (NAP) 2015\u20132030, and the goals of the Paris Agreement on climate adaptation. The overall project risk rating is Substantial.",
+          "score": 0.6516754627227783,
+          "source": "world_bank_projects",
+          "title": "Kenya Contingent Emergency Response Project",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P518719"
+        }
+      ],
+      "retrieval": {
+        "recall": 0.75,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/2104.05506v2",
+          "http://arxiv.org/abs/2412.13855v1",
+          "http://arxiv.org/abs/2512.13474v1"
+        ],
+        "missed": [
+          "http://arxiv.org/abs/2504.12832v1"
+        ]
+      },
+      "cited": [
+        1,
+        2,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "The Paris Agreement establishes two key temperature goals: limiting global warming to 1.5\u00b0C and 2\u00b0C.",
+            "verdict": "supported",
+            "sources": [
+              1,
+              5
+            ]
+          },
+          {
+            "claim": "The time horizons aligned with the 1.5\u00b0C and 2\u00b0C goals are 24 years and 58 years, respectively, as calculated from the Intergovernmental Panel on Climate Change Special Report on Global Warming of 1.5 C Scenario Database.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The GWP1.5 C and GWP2 C values are 75 and 42, respectively, and the GTP1.5 C and GTP2 C values are 41 and 9, according to source [1].",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The probability of breaching the 1.5\u00b0C limit is greater than zero for 2024 and greater than 99% by 2042 if no action is taken, as reported in source [2].",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "The Kenya Contingent Emergency Response Project is aligned with the World Bank Group Country Partnership Framework for Kenya and contributes to Kenya's Nationally Determined Contribution (NDC), National Adaptation Plan (NAP) 2015\u20132030, and the goals of the Paris Agreement on climate adaptation.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "How does carbon pricing impact developing economies?",
+      "intent": "policy",
+      "answer": "Carbon pricing, as examined in [1] and [2], has a significant impact on developing economies, primarily through carbon taxes and emissions trading systems (ETS). These policies reduce carbon emissions per capita, with a $10 per ton CO2 increase in carbon taxes leading to a 1.3% reduction in the short run and a 4.6% reduction in the long run [1]. Furthermore, accounting for global inequality, as explored in [2], reveals that optimal carbon prices are 15% higher when considering regional welfare weights. This suggests that developing economies, potentially with different marginal utilities of consumption, would require more stringent climate policies. \n\n[3] and [4] highlight the role of complementary technologies like renewables and carbon capture alongside carbon pricing. The optimization modeling in [3], using Japan as a case study, suggests that increased carbon pricing over time would further enhance reductions in emissions, potentially reaching 55-67% reduction in the energy sector by 2050. [4] demonstrates that carbon sink trading, particularly within agricultural supply chains, can be incentivized through cooperative models, leading to increased profits and carbon emission reductions. Finally, [5] indicates that carbon caps, combined with retrofitting strategies like carbon capture and biomass co-firing, could be implemented by 2035, reducing unabated coal plant capacity and carbon abatement costs in India, a developing economy.",
+      "seconds": 54.34278221299974,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/2402.03800v1",
+          "parent_id": "http://arxiv.org/abs/2402.03800v1",
+          "content": "Title: Effects of carbon pricing and other climate policies on CO2 emissions\nAbstract: We provide ex-post empirical analysis of the effects of climate policies on carbon dioxide emissions at the aggregate national level. Our results are based on a comprehensive database of 121 countries. As climate policies we examine carbon taxes and emissions trading systems (ETS), as well as the overall stringency of climate policies. We use dynamic panel regressions, controlling for macroeconomic factors such as economic development, GDP growth, urbanisation, as well as the energy mix. We find that higher carbon taxes and prices of permits in ETS reduce carbon emissions. An increase in carbon taxes by $10 per ton of CO2 reduces CO2 emissions per capita by 1.3% in the short run and by 4.6% in the long run.",
+          "score": 0.7787926197052002,
+          "source": "arxiv",
+          "title": "Effects of carbon pricing and other climate policies on CO2 emissions",
+          "url": "http://arxiv.org/abs/2402.03800v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2512.24520v2",
+          "parent_id": "http://arxiv.org/abs/2512.24520v2",
+          "content": "Title: Optimal Carbon Prices in an Unequal World: The Role of Regional Welfare Weights\nAbstract: How should nations price carbon? This paper examines how the treatment of global inequality, captured by regional welfare weights, affects optimal carbon prices. I develop theory to identify the conditions under which accounting for differences in marginal utilities of consumption across countries leads to more stringent global climate policy in the absence of international transfers. I further establish a connection between the optimal uniform carbon prices implied by different welfare weights and heterogeneous regional preferences over climate policy stringency. In calibrated simulations, I find that accounting for global inequality reduces optimal global emissions relative to an inequality-insensitive benchmark. This holds both when carbon prices are regionally differentiated, with emissions 21% lower, and when they are constrained to be globally uniform, with the uniform carbon price 15% higher.",
+          "score": 0.7382168173789978,
+          "source": "arxiv",
+          "title": "Optimal Carbon Prices in an Unequal World: The Role of Regional Welfare Weights",
+          "url": "http://arxiv.org/abs/2512.24520v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2305.05165v1",
+          "parent_id": "http://arxiv.org/abs/2305.05165v1",
+          "content": "Title: Assessing the optimal contributions of renewables and carbon capture and storage toward carbon neutrality by 2050\nAbstract: Building on the carbon reduction targets agreed in the Paris Agreements, many nations have renewed their efforts toward achieving carbon neutrality by the year 2050. In line with this ambitious goal, nations are seeking to understand the appropriate combination of technologies which will enable the required reductions in such a way that they are appealing to investors. Around the globe, solar and wind power lead in terms of renewable energy deployment, while carbon capture and storage (CCS) is scaling up toward making a significant contribution to deep carbon cuts. Using Japan as a case study nation, this research proposes a linear optimization modeling approach to identify the potential contributions of renewables and CCS toward maximizing carbon reduction and identifying their economic merits over time. Results identify that the combination of these three technologies could enable a carbon dioxide emission reduction of between 55 and 67 percent in the energy sector by 2050 depending on resilience levels and CCS deployment regimes. Further reductions are likely to emerge with increased carbon pricing over time.",
+          "score": 0.7098631262779236,
+          "source": "arxiv",
+          "title": "Assessing the optimal contributions of renewables and carbon capture and storage toward carbon neutrality by 2050",
+          "url": "http://arxiv.org/abs/2305.05165v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2407.05099v1",
+          "parent_id": "http://arxiv.org/abs/2407.05099v1",
+          "content": "Title: Equilibrium Strategies of Carbon Emission Reduction in Agricultural Product Supply Chain under Carbon Sink Trading\nAbstract: As global climate change and environmental issues escalate, carbon reduction has emerged as a paramount global concern. Agriculture accounts for approximately 30% of global greenhouse gas emissions, making carbon reduction in this sector crucial for attaining global emission targets. Carbon sink trading serves as a supplementary mechanism to achieve carbon peaking and neutrality, helping to lower the rate ofcarbon emissions. However, practical projects and research in the field of carbon sink trading are not enough currently. This work aims to thoroughly explore the cooperative models between farmers and retailers within the context of agricultural carbon sink trading, as well as the optimal decisions on the efforts to reduce carbon emission for both parties under different cooperative models. To this end, we delve into three distinct cooperative frameworks: the decentralized, the Stackelberg, and the centralized models, each accompanied by a corresponding differentialgame model. The Hamilton-Jacobi-Bellman equation is utilized to investigate the equilibrium strategies of each participant under these three cooperative models, respectively. Furthermore, we conducte numerical simulations to analyze the carbon emission reduction efforts of farmers and retailers, the carbon emission reduction level of the agricultural supply chain, and the overall profits of the supply chain. We also compare scenarios with and without carbon sink trading to provide a comprehensive assessment. The numerical results indicate that the centralized modelexcels in all aspects, followed by the Stackelberg model, with the decentralized model showing the weakest performance. Additionally, carbon sink trading can significantly increase the profits of the participants under each cooperative model.",
+          "score": 0.7046774625778198,
+          "source": "arxiv",
+          "title": "Equilibrium Strategies of Carbon Emission Reduction in Agricultural Product Supply Chain under Carbon Sink Trading",
+          "url": "http://arxiv.org/abs/2407.05099v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2409.18981v1",
+          "parent_id": "http://arxiv.org/abs/2409.18981v1",
+          "content": "Title: The role of coal plant retrofitting strategies in developing India's net-zero power system: a data-driven sub-national analysis\nAbstract: India set two Nationally Determined Contribution targets to achieve the net zero carbon emission goal by 2070, which requires deep decarbonization of India's power generation sector. Yet, coal power generation contributes to more than 60\\% of its total power generation, and policies still permit further coal fleet expansion and lifetime extensions. In this paper, we investigate the role of retrofitting India's coal plants for carbon capture and storage and biomass co-firing in developing the net-zero power system. We model the power generation and transmission network expansions across 30 Indian states in four representative grid evolution scenarios under progressively tighter carbon emission caps, taking into account sub-national coal price variation and thermal efficiency of individual coal plants. We find that coal plant retrofitting could happen by 2035 when an annual carbon cap for the power generation sector is less than 1,000 million tons CO$_2$. This reduces the unabated coal plant capacity, electricity generation, and carbon abatement costs. Exploiting renewable energy potentials solely, such as wind resources, could reduce carbon abatement costs significantly but will result in low coal plant utilization and uneven renewable generation deployment between Southern and Central regions concerning energy justice.",
+          "score": 0.703322172164917,
+          "source": "arxiv",
+          "title": "The role of coal plant retrofitting strategies in developing India's net-zero power system: a data-driven sub-national analysis",
+          "url": "http://arxiv.org/abs/2409.18981v1"
+        }
+      ],
+      "retrieval": {
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/2402.03800v1",
+          "http://arxiv.org/abs/2512.24520v2",
+          "http://arxiv.org/abs/2409.18981v1"
+        ],
+        "missed": []
+      },
+      "cited": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "Higher carbon taxes and prices of permits in ETS reduce carbon emissions.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "An increase in carbon taxes by $10 per ton of CO2 reduces CO2 emissions per capita by 1.3% in the short run and by 4.6% in the long run.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Accounting for global inequality reduces optimal global emissions.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "The optimal uniform carbon prices implied by different welfare weights are 15% higher.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "The combination of renewables, carbon capture and storage, and carbon pricing could enable a carbon dioxide emission reduction of between 55 and 67 percent in the energy sector by 2050.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "Carbon sink trading can significantly increase the profits of the participants under each cooperative model.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The centralized model of carbon sink trading performs better than the Stackelberg and decentralized models.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "Carbon plant retrofitting could happen by 2035 when an annual carbon cap for the power generation sector is less than 1,000 million tons CO2.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "What are the latest trends in renewable energy adoption in Europe?",
+      "intent": "implementation",
+      "answer": "Based on the provided sources, recent trends in renewable energy adoption in Europe are heavily influenced by grid infrastructure and sector coupling. [1] and [3] highlight the critical role of power transmission in smoothing out the fluctuations caused by variable renewable energy sources like wind and solar. Achieving a 90% utilization of potential transmission benefits requires quadrupling current grid installations, suggesting significant investment is needed. Furthermore, the model PyPSA-Eur-Sec-30 emphasizes that tight sector coupling \u2013 integrating electricity with transport and heating through technologies like battery electric vehicles and power-to-gas \u2013 reduces the reliance on transmission reinforcement, though it\u2019s a cost-optimizing strategy. [3]\n\nHowever, [4] reveals a significant increase in research focused on renewable energy applications within the agricultural sector over the last three years, with a focus on technologies like agrovoltaics, biogas production from agricultural waste, and renewable-powered agricultural robots. [5] indicates that the cost of renewable energy systems in MENA is likely to be lower than in Europe, largely due to differences in land availability and the absence of international transmission. This suggests that policy decisions regarding land use, nuclear power, and transmission expansion are key barriers to wider adoption in Europe.",
+      "seconds": 57.790871280998545,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/1401.4298v1",
+          "parent_id": "http://arxiv.org/abs/1401.4298v1",
+          "content": "Title: What can transmission do for a fully renewable Europe?\nAbstract: Our research is centred around the question how to best integrate the variable renewable energy sources (VRES), wind power and solar photovoltaics, into the European electricity grid. The future electricity supply will be based to a large extend on these fluctuating resources. We have conducted a study, extrapolating national historical and targeted wind and solar power penetrations in Europe up to 100% VRES (R.A. Rodriguez et al, Renewable Energy 63, p. 467, Mar 2014 and S. Becker et al, Energy 64, p. 404, Jan 2014). A high share of VRES means large fluctuations in the generation, causing overproduction and deficits. One way to reduce such mismatches is power transmission spatially smoothing out the fluctuations. This has the potential to reduce the remaining shortages by sharing the surplus production of others. We find that shortages can at maximum be reduced by 40% in the hypothetical case of unlimited transmission capacities across all of Europe. A more realistic extension of the transmission grid, roughly quadrupling today's installation, turns out to be sufficient to harvest 90% of this potential benefit. Finally, the import and export of single countries is investigated. We conclude that a country's load size as well as its position in the network are the determining factors for its import/export opportunities.",
+          "score": 0.752998948097229,
+          "source": "arxiv",
+          "title": "What can transmission do for a fully renewable Europe?",
+          "url": "http://arxiv.org/abs/1401.4298v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2202.02258v2",
+          "parent_id": "http://arxiv.org/abs/2202.02258v2",
+          "content": "Title: Seasonal prediction of renewable energy generation in Europe based on four teleconnection indices\nAbstract: With growing amounts of wind and solar power in the electricity mix of many European countries, understanding and predicting variations of renewable energy generation at multiple timescales is crucial to ensure reliable electricity systems. At seasonal scale, the balance between supply and demand is mostly determined by the large-scale atmospheric circulation, which is uncertain due to climate change and natural variability. Here we employ four teleconnection indices, which represent a linkage between atmospheric conditions at widely separated regions, to describe the large-scale circulation at seasonal scale over Europe. For the first time, we relate each of the teleconnections to the wind and solar generation anomalies at country and regional level and we show that dynamical forecasts of the teleconnection indices allow predicting renewable generation at country level with positive skill levels. This model unveils the co-variability of wind and solar generation in European countries through its common dependence on the general circulation and the state of the teleconnections.",
+          "score": 0.7426547408103943,
+          "source": "arxiv",
+          "title": "Seasonal prediction of renewable energy generation in Europe based on four teleconnection indices",
+          "url": "http://arxiv.org/abs/2202.02258v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/1801.05290v2",
+          "parent_id": "http://arxiv.org/abs/1801.05290v2",
+          "content": "Title: Synergies of sector coupling and transmission reinforcement in a cost-optimised, highly renewable European energy system\nAbstract: There are two competing concepts in the literature for the integration of high shares of renewable energy: the coupling of electricity to other energy sectors, such as transport and heating, and the reinforcement of continent-wide transmission networks. In this paper both cross-sector and cross-border integration are considered in the model PyPSA-Eur-Sec-30, the first open, spatially-resolved, temporally-resolved and sector-coupled energy model of Europe. Using a simplified network with one node per country, the cost-optimal system is calculated for a 95% reduction in carbon dioxide emissions compared to 1990, incorporating electricity, transport and heat demand. Flexibility from battery electric vehicles (BEV), power-to-gas units (P2G) and long-term thermal energy storage (LTES) make a significant contribution to the smoothing of variability from wind and solar and to the reduction of total system costs. The cost-minimising integration of BEV pairs well with the daily variations of solar power, while P2G and LTES balance the synoptic and seasonal variations of demand and renewables. In all scenarios, an expansion of cross-border transmission reduces system costs, but the more tightly the energy sectors are coupled, the weaker the benefit of transmission reinforcement becomes.",
+          "score": 0.7314509153366089,
+          "source": "arxiv",
+          "title": "Synergies of sector coupling and transmission reinforcement in a cost-optimised, highly renewable European energy system",
+          "url": "http://arxiv.org/abs/1801.05290v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2512.07905v1",
+          "parent_id": "http://arxiv.org/abs/2512.07905v1",
+          "content": "Title: Renewable Energies in the Agricultural Sector: A Perspective Analysis of the Last Three Years\nAbstract: Over the last three years, research on the application of renewable energies in the agricultural sector has grown significantly. In this study, we conducted a bibliometric analysis of global scientific production from 2019 to 2021 to identify trends, leading contributors, and emerging research areas. Based on 1378 documents retrieved from Scopus, we observed a clear upward trend in publications, with a peak in 2021. India, China, the United States, Italy, and the United Kingdom were the most productive countries, while key institutions from China, Iran, and the Netherlands led the research output. Our results reveal five major thematic clusters: renewable energy technologies in agriculture, bioenergy, sustainable agriculture, biomass energy, and the environmental impact of agricultural activities. Notable advances include agrovoltaic systems, the use of agricultural and livestock waste for biogas production, and the development of agricultural robots powered by renewable energy sources. Additionally, there is increasing interest in examining the links among agriculture, renewable energy use, and greenhouse gas emissions, aligned with global sustainability goals. This analysis highlights the evolution of the field, international collaboration patterns, and the most influential research lines, offering valuable insights to guide future scientific developments in integrating renewable energies within the agricultural sector.",
+          "score": 0.7244694232940674,
+          "source": "arxiv",
+          "title": "Renewable Energies in the Agricultural Sector: A Perspective Analysis of the Last Three Years",
+          "url": "http://arxiv.org/abs/2512.07905v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2003.08882v2",
+          "parent_id": "http://arxiv.org/abs/2003.08882v2",
+          "content": "Title: MENA Compared to Europe: The Influence of Land Use, Nuclear Power, and Transmission Expansion on Renewable Electricity System Costs\nAbstract: Most studies that examine CO2-neutral, or near CO2-neutral, power systems by using energy system models investigate Europe or the United States, while similar studies for other regions are rare. In this paper, we focus on the Middle East and North Africa (MENA), where weather conditions differ substantially from those in Europe. We use a green-field linear capacity expansion model with over-night investment to assess the effect on the system cost of (i) limiting/expanding the amount of land available for wind and solar farms, (ii) allowing for nuclear power and (iii) disallowing for international transmission. The assessment is done under three different cost regimes for solar PV and battery storage. First, we find that the amount of available land for wind and solar farms can have a significant impact on the system cost, with a cost increase of 0-50% as a result of reduced available land. Second, allowing for nuclear power has a minor effect in MENA, while it may decrease the system cost in Europe by up to 20%. In Europe, the effect on system cost from allowing for nuclear power is highly dependent on the PV and battery cost regime. Third, disallowing for international transmission increases the system cost by up to 25% in both Europe and MENA. The impacts on system cost from these three controversial and policy-relevant factors in a decarbonized power system thus play out differently, depending on (i) the region and (ii) uncertain future investment costs for solar PV and storage. We conclude that a renewable power system in MENA is likely to be less costly than one in Europe, irrespective of future uncertainties regarding investment cost for PV and batteries, and policies surrounding nuclear power, transmission, and land available for wind and solar farms.",
+          "score": 0.7113322019577026,
+          "source": "arxiv",
+          "title": "MENA Compared to Europe: The Influence of Land Use, Nuclear Power, and Transmission Expansion on Renewable Electricity System Costs",
+          "url": "http://arxiv.org/abs/2003.08882v2"
+        }
+      ],
+      "retrieval": {
+        "recall": 0.8,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/1401.4298v1",
+          "http://arxiv.org/abs/2202.02258v2",
+          "http://arxiv.org/abs/1801.05290v2",
+          "http://arxiv.org/abs/2003.08882v2"
+        ],
+        "missed": [
+          "http://arxiv.org/abs/2208.09169v2",
+          "wb_P515275"
+        ]
+      },
+      "cited": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "The research in [1] suggests that a high share of variable renewable energy sources (VRES) means large fluctuations in generation, causing overproduction and deficits.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The study in [1] finds that shortages can at maximum be reduced by 40% in the hypothetical case of unlimited transmission capacities across all of Europe.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "A more realistic extension of the transmission grid, roughly quadrupling today's installation, turns out to be sufficient to harvest 90% of this potential benefit.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The study in [2] employs four teleconnection indices to predict renewable energy generation at country level with positive skill levels.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "Sector coupling, including technologies like battery electric vehicles and power-to-gas, reduces the reliance on transmission reinforcement.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "The integration of BEV pairs well with the daily variations of solar power.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "Research on renewable energies in the agricultural sector has grown significantly over the last three years.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "India, China, the United States, Italy, and the United Kingdom were the most productive countries for research in renewable energies in the agricultural sector between 2019 and 2021.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The analysis in [4] reveals five major thematic clusters related to renewable energies in the agricultural sector: renewable energy technologies in agriculture, bioenergy, sustainable agriculture, biomass energy, and the environmental impact of agricultural activities.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The amount of available land for wind and solar farms can have a significant impact on the system cost, with a cost increase of 0-50% as a result of reduced available land.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          },
+          {
+            "claim": "Allowing for nuclear power has a minor effect in MENA, while it may decrease the system cost in Europe by up to 20%.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          },
+          {
+            "claim": "Disallowing for international transmission increases the system cost by up to 25% in both Europe and MENA.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          },
+          {
+            "claim": "A renewable power system in MENA is likely to be less costly than one in Europe, irrespective of future uncertainties regarding investment cost for PV and batteries.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "Explain the role of forestry in carbon sequestration strategies.",
+      "intent": "scientific",
+      "answer": "Forestry offers significant potential for carbon sequestration, as evidenced by several studies. The Yatir forest in Israel, as detailed in [1] and [2], demonstrates a sequestration rate of approximately 20.0 Gt CO2 per year. Measurements show an organic carbon sequestration rate of 550 g CO2 m-2 yr-1, with two-thirds in soil and one-third in biomass, and an inorganic carbon sequestration rate of 216 g CO2 m-2 yr-1, primarily through calcite precipitation. Critically, irrigation \u2013 specifically, maintaining soil moisture at approximately 18% \u2013 doubled the organic carbon sequestration rate [2]. This highlights the importance of water availability for maximizing carbon uptake. \n\nFurthermore, research indicates that forestation of drylands, even with fossil water reserves, can contribute substantially to global carbon sequestration. [2] estimates that approximately 9.0 million km2 of drylands are potentially available for afforestation, with a potential total annual sequestration rate of 20.0 Gt CO2 yr-1, divided between 14.0 Gt CO2 yr-1 (organic) and 6.0 Gt CO2 yr-1 (inorganic) [2]. However, the French forest experience [4] reveals a decline in carbon sequestration since 1990, linked to increased mortality rates exacerbated by climate shocks like droughts, suggesting that forest management practices are crucial for maintaining these sequestration rates. [5] confirms that inorganic carbon sequestration occurs through the precipitation of calcite from root exhalation, and that this process can augment pedogenic carbonate formation, particularly when Ca+2 is sourced from non-carbonate materials.",
+      "seconds": 70.81512386599934,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/2511.22720v2",
+          "parent_id": "http://arxiv.org/abs/2511.22720v2",
+          "content": "Title: Disentangling the soil and atmospheric stress on carbon sequestration in a Mediterranean pine forest\nAbstract: Sequestration of atmospheric CO$_2$ in a Mediterranean semi-arid Aleppo Pine Forest (Pinus halepensis) close to the border of the semi-arid timberline was characterized and quantified under field conditions. Measurements of organic and inorganic CO$_2$ sequestration with gas exchange and stock counting approaches were made in both rainfed control (approximately 12$\\%$ average annual soil moisture) and summer irrigated plots (approximately 24$\\%$ annual average soil moisture), providing the opportunity to separate the effects of atmospheric water demand from soil water stress on the atmospheric CO$_2$ sequestration responses. Measurements yield an organic carbon sequestration (OCS) rate of approximately 550 g CO$_2$ m$^{-2}$ yr$^{-1}$, two-thirds in soil and one-third in biomass. In addition, measurements yield an inorganic carbon sequestration (ICS) rate of approximately 216 g CO$_2$ m$^{-2}$ yr$^{-1}$; via calcite (CaCO$_3$) precipitation in the soil due to root exhalation of CO$_2$ (60$\\%$) and microbial activity (40$\\%$). The drip irrigated plot showed approximately 3 times higher organic CO$_2$ sequestration than the control plot. The organic sequestration is divided equally between the soil and the biomass. For the irrigated plot, the inorganic CO$_2$ was approximately 1.8 times higher than that of the control plot. However, for inorganic CO$_2$ sequestration, the soil moisture would need to be maintained lower than that of the study plot to preclude dissolving precipitated calcite. For many drylands, irrigation could be achieved by using fossil water reserves. These measured values demonstrate the relatively high potential carbon sequestration in Mediterranean drylands forests under irrigated and non-irrigated conditions.",
+          "score": 0.813361644744873,
+          "source": "arxiv",
+          "title": "Disentangling the soil and atmospheric stress on carbon sequestration in a Mediterranean pine forest",
+          "url": "http://arxiv.org/abs/2511.22720v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2205.10641v7#0",
+          "parent_id": "http://arxiv.org/abs/2205.10641v7",
+          "content": "Title: Potential Global Sequestration of Atmospheric Carbon Dioxide by Drylands Forestation\nAbstract: Drylands forestation offers the potential for significant long-term sequestration of atmospheric CO$_2$. We consider sequestration of organic and inorganic carbon by a planted semi-arid forest, based on carbon that originates from atmospheric CO$_2$. Measurements at Israels Yatir forest give a sequestration rate of $\\sim$550 g CO$_2$ m$^{-2}$ yr$^{-1}$ as organic carbon in the trees biomass. The inorganic carbon precipitation rate gives an additional 216 g CO$_2$ m$^{-2}$ yr$^{-1}$ globally, via calcite (CaCO$_3$) precipitation in soil. This sequestration is due to a combination of microbial activity on organic soil carbon, and the formation of soil carbonic acid (H$_2$CO$_3$) that arises from the reaction of soil water with CO$_2$ exhaled from tree roots. Published estimates restrict the potential drylands surface available for sustainable forestation to $\\sim$4.5 million km$^2$, only $\\sim$10$\\%$ of the global drylands. The dominant limitation is the apparent lack of water. However, immediately under many drylands, there are paleowaters (fossil water) that had recharged underlying aquifers during prior wetter climatic regimes. Conservatively, including fossil water, at least $\\sim$9.0 million km$^2$ is available for afforestation. Measurements at Yatir show that drip irrigation to $\\sim$18$\\%$ average Soil Moisture (higher than the rainfed $\\sim$12$\\%$ SM) would double the organic carbon sequestration rate. In addition, the tree density could be increased, which would independently double the organic carbon sequestration rate. The potential total annual sequestration rate is then estimated as 20.0 Gt CO$_2$. Measurements at Israels Yatir forest give a sequestration rate of $\\sim$20.0 Gt CO$_2$ yr$^{-1}$, divided between 14.0 Gt CO$_2$ yr$^{-1}$ (organic) and 6.0 Gt CO$_2$ yr$^{-1}$ (inorganic).",
+          "score": 0.8001399636268616,
+          "source": "arxiv",
+          "title": "Potential Global Sequestration of Atmospheric Carbon Dioxide by Drylands Forestation",
+          "url": "http://arxiv.org/abs/2205.10641v7"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/1505.05669v2",
+          "parent_id": "http://arxiv.org/abs/1505.05669v2",
+          "content": "Title: Optimal forest rotation age under efficient climate change mitigation\nAbstract: This paper considers the optimal rotation of forests when the carbon flows of forest growth and harvest are priced with an increasing price. Such an evolution of carbon price is generally associated with economically efficient climate change mitigation, and would provide incentives for the land-owner for enhanced carbon sequestration. With an infinitely long sequence of even-aged forest rotations, the optimal harvest age changes with subsequent rotations due to the changing carbon price. The first-order optimality conditions therefore also involve an infinite chain of lengths for consecutive forest rotations, and allow the approximation of the infinite-time problem with a truncated series of forest rotations. Illustrative numerical calculations show that when starting from bare land, the initial carbon price and its growth rate both primarily increase the length of the first rotation. With some combinations of the carbon pricing parameters, the optimal harvest age can be several hundred years if the forest carbon is released to the atmosphere upon harvest. This effect is not, however, entirely monotonous. Consequently, the currently optimal harvest ages are generally lower with higher rates of carbon price increase. This creates an interesting temporal aspect, suggesting that the supply of wood and carbon sequestration by forests can change considerably during subsequent rotations under an increasing price on carbon.",
+          "score": 0.7924977540969849,
+          "source": "arxiv",
+          "title": "Optimal forest rotation age under efficient climate change mitigation",
+          "url": "http://arxiv.org/abs/1505.05669v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2505.11512v1",
+          "parent_id": "http://arxiv.org/abs/2505.11512v1",
+          "content": "Title: An outlook on the Rapid Decline of Carbon Sequestration in French Forests and associated reporting needs\nAbstract: In this study, we present and discuss changes in carbon storage in the French forests from 1990 to 2022, derived from CITEPA statistics on forest carbon accounting, fed by National Forest Inventory (NFI) data collected through an extensive network of measurement sites across Metropolitan France, and other data sources as regards forest removals. The NFI is designed to provide statistical estimations of growing stock, gains and losses at the national or subnational levels but is unable, in its classical form, to provide detailed spatial outlook, such as on abrupt losses during fires, droughts and insect attacks. A continuing removal of CO2 from the atmosphere by the French forests occurred from 1990 to 2022, because harvest and mortality CO2 losses remained smaller than CO2 removals by forest growth and the increase in forest area (70,000 ha per year but insignificant in terms of increased carbon stocks at present). The CO2 removal by forests was 49.3 MtCO2 yr-1 in 1990, increased to reach a peak of 74.1 MtCO2 yr-1 in 2008 and then quickly decreased down to 37.8 Mton CO2 yr-1 in 2022. After 2017, the sink remained low and mortality rates stayed larger than during any of the previous years. This recent period is marked by climate shocks such as summer droughts and heatwaves in 2015, 2018, 2022, 2023. The full impacts of the droughts in 2022 and 2023 are not yet covered with full precision, as some of the sites measured by the national inventory before those droughts are still pending a second visit. The different regions of France show contrasted trajectories. Southern Mediterranean regions where forests have a low harvest rate have experienced a lower increase in mortality and a sustained CO2 uptake.",
+          "score": 0.7878319621086121,
+          "source": "arxiv",
+          "title": "An outlook on the Rapid Decline of Carbon Sequestration in French Forests and associated reporting needs",
+          "url": "http://arxiv.org/abs/2505.11512v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/1702.05249v2#0",
+          "parent_id": "http://arxiv.org/abs/1702.05249v2",
+          "content": "Title: Sequestration of atmospheric carbon dioxide as inorganic carbon in the unsaturated zone under semi-arid forests\nAbstract: Inorganic carbon, in the form of allogenic (transported) and pedogenic (soil) carbonates in semi-arid soils, may comprise an important carbon sink. Carbon dioxide, CO2, originating from the atmosphere and exhaled by tree roots into the soil, may be hydrated by soil water within the unsaturated zone (USZ) of semi-arid soils to produce the carbonic acid (H2CO3) solutes HCO3- bicarbonate and H+ Hydrogen ion. This H+ may then dissolve relict soil CaCO3 carbonate (calcite), to release Ca+2 calcium cations and more HCO3- bicarbonate. When conditions allow, one mole of Ca+2 and two moles of HCO3- combine to precipitate one mole of calcite, and to release one mole of CO2: Ca+2 + 2HCO3- --> CaCO3 + CO2 + H2O. However, it has been claimed that such carbonates do not sequester significant amounts of present day atmospheric CO2. The reasons given were that they originate in part from the pre-existing limestone; and that for every mole of calcite precipitated, one mole of CO2 may be liberated to the atmosphere. It was argued that only if the Ca+2 cation is derived from a non-carbonate source can sequestration be assumed. We have tested these assumptions under field conditions at two semi-arid sites in Israel. We found that bicarbonate, originating from root exhalation, is depleted and is incorporated within the USZ as carbonates precipitate. Thus, a net sequestration of atmospheric CO2 does occur under semi-arid forests. Moreover, most of the CO2 liberated in the precipitation reaction may remain in the soil. And Ca+2 in the sediment may also be supplied from sources other than pre-existing calcite. Forestation can therefore augment pedogenic carbonate formation.",
+          "score": 0.7721694707870483,
+          "source": "arxiv",
+          "title": "Sequestration of atmospheric carbon dioxide as inorganic carbon in the unsaturated zone under semi-arid forests",
+          "url": "http://arxiv.org/abs/1702.05249v2"
+        }
+      ],
+      "retrieval": {
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/2511.22720v2",
+          "http://arxiv.org/abs/2205.10641v7",
+          "http://arxiv.org/abs/1505.05669v2",
+          "http://arxiv.org/abs/2505.11512v1",
+          "http://arxiv.org/abs/1702.05249v2"
+        ],
+        "missed": [
+          "http://arxiv.org/abs/2009.10263v1",
+          "wb_P507271",
+          "wb_P507869",
+          "wb_P510697"
+        ]
+      },
+      "cited": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "The Yatir forest in Israel demonstrates a sequestration rate of approximately 20.0 Gt CO2 per year.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "Measurements at the Yatir forest show an organic carbon sequestration rate of approximately 550 g CO2 m-2 yr-1, with two-thirds in soil and one-third in biomass.",
+            "verdict": "supported",
+            "sources": [
+              1,
+              2
+            ]
+          },
+          {
+            "claim": "Irrigation at approximately 18% average soil moisture doubled the organic carbon sequestration rate.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "Forestation of drylands, even with fossil water reserves, can contribute substantially to global carbon sequestration.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "Approximately 9.0 million km2 of drylands are potentially available for afforestation.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "The potential total annual sequestration rate is estimated as 20.0 Gt CO2.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "The French forests experienced a decline in carbon sequestration since 1990, linked to increased mortality rates exacerbated by climate shocks.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The CO2 removal by forests was 49.3 MtCO2 yr-1 in 1990 and decreased to 37.8 Mton CO2 yr-1 in 2022.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "Inorganic carbon sequestration occurs through the precipitation of calcite from root exhalation.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "What is the impact of methane emissions on global warming compared to CO2?",
+      "intent": "scientific",
+      "answer": "According to source [2], methane (CH4) has a Global Warming Potential (GWP) of 75 over a 100-year period, relative to CO2. This contrasts with a GWP of 42 for CO2 over the same timeframe. Furthermore, the source indicates that using a 24-year time horizon, aligned with the 1.5\u00b0C global warming goal, results in a GWP of 75 for methane and 42 for CO2. \n\nSource [1] details a decline in coal mine methane emissions intensity in China, linked to policy instruments. While [3] focuses on methane emissions from coastal tidal wetlands, noting an increase in emissions driven by warming and inundation, it does not provide a direct comparison of methane\u2019s warming potential relative to CO2. Finally, source [5] examines the impact of carbon pricing policies on CO2 emissions, but does not directly address the relative warming potential of methane compared to CO2.",
+      "seconds": 80.89305692099879,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/2607.16931v1",
+          "parent_id": "http://arxiv.org/abs/2607.16931v1",
+          "content": "Title: Satellite-based emissions estimate indicates progress toward China's methane mitigation goals\nAbstract: China emits the most methane of any country worldwide, but there are large uncertainties in recent emissions trends, sources, and the potential impacts of policy actions. This study focuses on a period when the government initiated ambitious methane control efforts, linking sectoral policies with atmospheric evidence on sectoral, sub-national, and seasonal emissions during 2019--2024. We quantify daily methane emissions from China using a regional atmospheric inverse model with TROPOMI satellite observations. Our results reveal an average methane emissions increase rate of 0.3 Tg yr$^{-2}$ in Eastern & Central China, likely a milder trend than in the 2010s. Coal industry methane emissions intensity declined for the first time (-3.2% yr$^{-1}$) despite rising production, possibly associated with diverse policy instruments, mandates, and incentives. We further highlight two emerging challenges for future mitigation: leaks from expanding urban gas use amid the energy transition and rising agricultural emission yet with substantial uncertainty in estimates. Lastly, declining emissions intensity of coal mines points to the future role of targeted mandates and incentives in encouraging methane reduction for other sectors.",
+          "score": 0.7620601654052734,
+          "source": "arxiv",
+          "title": "Satellite-based emissions estimate indicates progress toward China's methane mitigation goals",
+          "url": "http://arxiv.org/abs/2607.16931v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2104.05506v2",
+          "parent_id": "http://arxiv.org/abs/2104.05506v2",
+          "content": "Title: Global temperature goals should determine the time horizons for greenhouse gas emission metrics\nAbstract: Emission metrics, a crucial tool in setting effective equivalences between greenhouse gases, currently require a subjective, arbitrary choice of time horizon. Here, we propose a novel framework that uses a specific temperature goal to calculate the time horizon that aligns with scenarios achieving that temperature goal. We analyze the Intergovernmental Panel on Climate Change Special Report on Global Warming of 1.5 C Scenario Database to find that time horizons that align with the 1.5 and 2 C global warming goals of the Paris Agreement are 24 [90% prediction interval: 7, 41] and 58 [90% PI: 41, 74] years respectively. We then use these time horizons to quantify time-dependent emission metrics with methane as our main example. We find that the Global Warming Potential values that align with the 1.5 and 2 C goals are GWP1.5 C = 75 [90% PI: 54, 107] and GWP2 C = 42 [90% PI: 35, 54]; for the Global Temperature change Potential they are GTP1.5 C = 41 [90% PI: 16, 102] and GTP2 C = 9 [90% PI: 7, 16]. The most commonly used time horizon, 100 years, underestimates methane emission metrics by 34-38% relative to the values we calculate that align with the 2 C goal and 63-87% relative to the 1.5 C goal. To best align emission metrics with the 1.5 C goal of the Paris Agreement, we recommend a 24-year time horizon, using 2045 as the endpoint time, with its associated GWP1.5 C = 75 and GTP1.5 C = 41.",
+          "score": 0.7540086507797241,
+          "source": "arxiv",
+          "title": "Global temperature goals should determine the time horizons for greenhouse gas emission metrics",
+          "url": "http://arxiv.org/abs/2104.05506v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2512.14076v1",
+          "parent_id": "http://arxiv.org/abs/2512.14076v1",
+          "content": "Title: Seesaw of Saltwater and Inundation Drives Methane Emissions in Coastal Tidal Wetlands\nAbstract: Wetlands are significant carbon sinks, yet methane emissions partially offset this function due to its high global warming potential. Coastal tidal wetlands, unlike non-tidal wetlands, are regulated by oceanic drivers like salinity gradients and tidal inundation, which strongly influence methane production and release but remain poorly represented in regional assessments. Here, we estimate methane emissions from U.S. East Coast tidal marshes, by integrating ocean model, remote sensing datasets, empirical relationships from metadata. Spatially, emissions reflect the combined effects of marsh extent and per-unit-area flux rates, with hotspots occurring under lower salinity, higher inundation, and lower latitudes. Temporally, temperature and salinity dominate decadal-scale interannual variability. Between 2001 to 2020, total methane emissions are estimated at 0.019 - 0.038 Tg yr-1, with local fluxes rate ranging from 0 to 20 g m-2 day-1. Following pronounced hydrological variability in the early 2000s, emissions have increased steadily since 2007 at approximately 802 t yr-1, driven by warming, freshening, and enhanced inundation. Projections under IPCC climate scenarios indicate that increasing inundation will amplify methane emissions with sea-level rise, until a threshold near 0.75 m SLR, beyond which saltwater intrusion increasingly suppresses further growth, highlighting the critical role of salinity-inundation interactions in coastal methane dynamics.",
+          "score": 0.7503150701522827,
+          "source": "arxiv",
+          "title": "Seesaw of Saltwater and Inundation Drives Methane Emissions in Coastal Tidal Wetlands",
+          "url": "http://arxiv.org/abs/2512.14076v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2107.10317v2",
+          "parent_id": "http://arxiv.org/abs/2107.10317v2",
+          "content": "Title: A high-resolution gridded inventory of coal mine methane emissions for India and Australia\nAbstract: Coal mines are globally an important source of methane and also one of the largest point sources of methane. We present a high-resolution 0.1deg x 0.1deg bottom-up gridded emission inventory for methane emissions from coal mines in India and Australia, which are among the top five coal-producing countries in 2018. The aim is to reduce the uncertainty in local coal mine methane emissions and to improve the spatial localization to support monitoring and mitigation of these emissions. For India, we improve the spatial allocation of the emissions by identifying the exact location of surface and underground coal mines and we use a tier-2 Intergovernmental Panel on Climate Change (IPCC) methodology to estimate the emissions from each coal mine using country-specific emission factors. For Australia, we estimate the emission for each coal mine by distributing the state-level reported total emissions using proxies of coal production and the coal basin-specific gas content profile of underground mines. Comparison of our total coal mine methane emission from India with existing global inventories showed our estimates are about a factor 3 lower, but well within the range of the national Indian estimate reported to the United Nations framework convention on climate change (UNFCCC). For both countries, the new spatial distribution of the emissions shows a large difference from the global inventories. Our improved emissions dataset will be useful for air quality or climate modeling and while assessing the satellite methane observations.",
+          "score": 0.7305536866188049,
+          "source": "arxiv",
+          "title": "A high-resolution gridded inventory of coal mine methane emissions for India and Australia",
+          "url": "http://arxiv.org/abs/2107.10317v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2402.03800v1",
+          "parent_id": "http://arxiv.org/abs/2402.03800v1",
+          "content": "Title: Effects of carbon pricing and other climate policies on CO2 emissions\nAbstract: We provide ex-post empirical analysis of the effects of climate policies on carbon dioxide emissions at the aggregate national level. Our results are based on a comprehensive database of 121 countries. As climate policies we examine carbon taxes and emissions trading systems (ETS), as well as the overall stringency of climate policies. We use dynamic panel regressions, controlling for macroeconomic factors such as economic development, GDP growth, urbanisation, as well as the energy mix. We find that higher carbon taxes and prices of permits in ETS reduce carbon emissions. An increase in carbon taxes by $10 per ton of CO2 reduces CO2 emissions per capita by 1.3% in the short run and by 4.6% in the long run.",
+          "score": 0.7235264778137207,
+          "source": "arxiv",
+          "title": "Effects of carbon pricing and other climate policies on CO2 emissions",
+          "url": "http://arxiv.org/abs/2402.03800v1"
+        }
+      ],
+      "retrieval": {
+        "recall": 0.6666666666666666,
+        "reciprocal_rank": 0.5,
+        "found": [
+          "http://arxiv.org/abs/2104.05506v2",
+          "http://arxiv.org/abs/2512.14076v1"
+        ],
+        "missed": [
+          "http://arxiv.org/abs/2308.11003v1"
+        ]
+      },
+      "cited": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "Methane has a Global Warming Potential (GWP) of 75 over a 100-year period, relative to CO2, according to source [2].",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "Using a 24-year time horizon, aligned with the 1.5\u00b0C global warming goal, results in a GWP of 75 for methane and 42 for CO2, according to source [2].",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "Source [1] details a decline in coal mine methane emissions intensity in China, linked to policy instruments.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Source [3] notes an increase in methane emissions from coastal tidal wetlands driven by warming and inundation.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "Source [5] examines the impact of carbon pricing policies on CO2 emissions, but does not directly address the relative warming potential of methane compared to CO2.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "How are NDCs (Nationally Determined Contributions) being tracked?",
+      "intent": "policy",
+      "answer": "Based on the provided sources, tracking of NDCs (Nationally Determined Contributions) is being approached through several linked mechanisms, primarily focused on monitoring and verifying climate adaptation finance and landscape restoration efforts. \n\nFirstly, the World Bank\u2019s \u201cSecond Community Action for Landscape Management Program for Results\u201d (Source [1]) utilizes Disbursement-Linked Indicators (DLIs) to track progress. These DLIs include verifying non-forest emission reductions, expanding sustainable landscape management, and establishing forest management plans \u2013 all directly contributing to climate mitigation targets. The program\u2019s focus on integrating cooperatives into value chains and supporting PES schemes also aligns with broader NDC commitments related to carbon markets and ecosystem services. \n\nSecondly, research (Source [2]) suggests a significant degree of overreporting in climate adaptation finance, estimating a 32.03% overreporting rate with a credible interval. While not directly tracking NDCs, this research highlights the need for more accurate assessment of funds allocated to climate adaptation, which is crucial for effective NDC implementation. Finally, the \u201cBolivia Resilient Water Management\u201d project (Source [4]) employs a bottom-up approach, prioritizing basins based on criteria like aridity and poverty, aiming to tackle \u201clow-hanging fruits\u201d and demonstrate early successes \u2013 a strategy consistent with the iterative and adaptive nature of NDC implementation. The Sierra Leone project (Source [5]) similarly focuses on nature-based solutions for water security, aligning with NDC goals of enhancing resilience and reducing vulnerability to climate impacts.",
+      "seconds": 95.58922240500033,
+      "contexts": [
+        {
+          "doc_id": "wb_P510697#1",
+          "parent_id": "wb_P510697",
+          "content": "Under Result Area 1 (Participatory Watershed and Forest Management), Disbursement-Linked Indicators (DLIs) incentivize scaling up restoration and market linkages by: (1) registering Community Watershed Users\u2019 Cooperative Societies (CWUCS) with participatory, approved Watershed Management Plans; (2) expanding the area under sustainable landscape management; (3) establishing Participatory Forest Management with legally recognized cooperatives and approved Forest Management Plans; (4) treating acid soils; (5) integrating cooperatives into existing and new value chains within program catchments; and (6) verifying non forest emission reductions. Under Result Area 2 (Rural Land Administration), DLIs focus on expanding and digitizing secure tenure by: (1) issuing Second Level Land Holding Certificates (SLLCs) for individual parcels; (2) issuing SLLCs for communal forests and grazing lands; (3) operationalizing the National Rural Land Administration Information System in program woredas with digitized SLLCs; and (4) increasing connectivity of land administration offices and systems to national digital infrastructure. The IPF component\u2014financed by IDA, SCALE, Nordic Development Fund (NDF), and ENABLE\u2014will provide cross-cutting technical assistance and capacity building across both result areas and the broader government program (ESIF 2). It will support: (i) agribusiness development by linking landholders to agribusinesses; (ii) design and implementation of payment for ecosystem services (PES) schemes; (iii) access to carbon markets; and (iv) Operationalize pilots to promote voluntary land consolidation in Ethiopia\u2019s highlands. These pilots involve baseline surveys, voluntary land exchange, and design, testing, and documentation of a computerized platform in real-world conditions. The likelihood and magnitude of risk for the voluntary exchange program pilot have been assessed.",
+          "score": 0.6417030096054077,
+          "source": "world_bank_projects",
+          "title": "Second Community Action for Landscape Management Program for Results",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P510697"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2211.16947v1",
+          "parent_id": "http://arxiv.org/abs/2211.16947v1",
+          "content": "Title: Using Text Classification with a Bayesian Correction for Estimating Overreporting in the Creditor Reporting System on Climate Adaptation Finance\nAbstract: Development funds are essential to finance climate change adaptation and are thus an important part of international climate policy. % However, the absence of a common reporting practice makes it difficult to assess the amount and distribution of such funds. Research has questioned the credibility of reported figures, indicating that adaptation financing is in fact lower than published figures suggest. Projects claiming a greater relevance to climate change adaptation than they target are referred to as \"overreported\". To estimate realistic rates of overreporting in large data sets over times, we propose an approach based on state-of-the-art text classification. To date, assessments of credibility have relied on small, manually evaluated samples. We use such a sample data set to train a classifier with an accuracy of $89.81\\% \\pm 0.83\\%$ (tenfold cross-validation) and extrapolate to larger data sets to identify overreporting. Additionally, we propose a method that incorporates evidence of smaller, higher-quality data to correct predicted rates using Bayes' theorem. This enables a comparison of different annotation schemes to estimate the degree of overreporting in climate change adaptation. Our results support findings that indicate extensive overreporting of $32.03\\%$ with a credible interval of $[19.81\\%;48.34\\%]$.",
+          "score": 0.6244710683822632,
+          "source": "arxiv",
+          "title": "Using Text Classification with a Bayesian Correction for Estimating Overreporting in the Creditor Reporting System on Climate Adaptation Finance",
+          "url": "http://arxiv.org/abs/2211.16947v1"
+        },
+        {
+          "doc_id": "wb_P181533#3",
+          "parent_id": "wb_P181533",
+          "content": "Support under this activity will prioritize women, youth, and IDPs. This will diversify livelihoods vulnerable to climate change impacts. With the proposed changes the cost of Component 3 for Burkina Faso will increase to US$12.9 million.Lastly, the cost of Component 5 is increased by US$28.0 million. Of this, US$3.0 million would go towards supporting the coordination of the AF activities (subcomponent 5.1 \u2013 Project coordination) \u2013 including enhancing the technical and organizational capacity of the PIU, ensuring environmental and social safeguards compliance, effective M&E, procurement, FM, and communication, among others. US$25.0 million will go to subcomponent 5.2 (Institutional strengthening), and of this, US$24.0 million will go towards the procurement and delivery of 37,000 tons of food to replenish the national food-stock reserve. The reserve, managed by the National Food Security Stock Management Company (Societe nationale de gestion des stocks de securite alimentaire, SONAGESS), a state-owned national food security stock management enterprise is composed of major staple cereals: maize, rice, and sorghum/millet. Depending on prevailing market prices, procurement will be from local, regional, or international markets. Part of the purchased staple food will be distributed to the vulnerable households in targeted regions using the government existing mechanism. SONAGESS has demonstrated capacity to undertake the proposed food procurement and distribution as evidenced under other World Bank - financed projects . The use of IDA resources to purchase food in the current context is a productive investment as it would prevent the continued adoption of negative coping mechanisms by beneficiaries, including the desperate sale of assets. The balance of US$1.0 million will support the purchase and distribution of nutritional supplements to help address the high levels of malnutrition in children and pregnant and lactating women.",
+          "score": 0.6198171973228455,
+          "source": "world_bank_projects",
+          "title": "Additional Financing for Regional Sahel Pastoralism Support Project II Burkina Faso",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P181533"
+        },
+        {
+          "doc_id": "wb_P178861#1",
+          "parent_id": "wb_P178861",
+          "content": "Most of the micro-basins are located within the territory of one or a few autonomous municipal governments, thus facilitating coordination with the OGCs. In turn, larger basins that are managed by UGCs oftentimes extend beyond the boundaries of a single department and require the involvement of and closer coordination with the autonomous departmental governments and the MMAyA/VRHR. For activities under the VRHR\u2019s responsibilities and that are eligible for Project funding, pre-feasibility studies (Technical Reports on Preconditions, ITCPs) and detailed technical designs (Pre-investment Technical Design Studies, EDTPs) will be prepared. In the case of activities that are not under the VRHR\u2019s responsibilities or are not eligible for financing under the Project, subproject profiles will be prepared to help stakeholders - municipal governments and community organizations such as OGCs - look for other funding sources.\u2022 A bottom-up approach. The activities or subprojects will be identified and prioritized by the communities with the active participation of the municipal governments and the OGCs. The Project\u2019s target will be basins located in the 9 departments of Bolivia. The geographic area comprises 256 municipal governments. Eligibility criteria for the selection of these basins include: (i) high aridity index, (ii) high levels of poverty, (iii) high population density, and (iv) potential areas of intervention under the different components of the Project. The Project will sequence the activities to focus initially on basins that present high levels of need and high levels of readiness for implementation, tackling \u2018low-hanging fruits\u2019 quickly to demonstrate early successes in the first phase of the Bolivia Climate Smart and Resilient Program and inform the design of the following phases. The Project will comprise of the following four components:Component 1. Water resources planning and pre-investment studies (US$9.930 million).",
+          "score": 0.6106059551239014,
+          "source": "world_bank_projects",
+          "title": "Bolivia Resilient Water Management for Community and Household Irrigation Project",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P178861"
+        },
+        {
+          "doc_id": "wb_P507588#4",
+          "parent_id": "wb_P507588",
+          "content": "Third, it will prepare a map of priority areas suggesting catchment restorative nature-based solutions (e.g., afforestation, soil conservation) to be implemented to restore the greenbelt forest cover in places where it has been degraded and monitor soil moisture and carbon sequestration to demonstrate that preserving forest cover increases climate resilience. To implement these activities, NWRMA will collaborate with MWRS, GVWC, Ministry of Environment and Climate Change (MoECC), the National Protected Area Authority and NGOs active in this field, such as the Catholic Relief Services. By enhancing water resources planning, monitoring, and protection, Component 2 will support long-term water security, improve resilience and reduce the potential impact of floods (as water will be less contaminated) and droughts, as enough clean water will become available when and where needed, and water service disruptions will be reduced. Component 3: Priority Investments in Urban Water Supply (US$16.25 million).This component will be implemented by GVWC, with oversight by the MWRS. It will finance works, goods and consultants\u2019 services aiming at improving GVWC\u2019s operational efficiency, water supply service delivery in Greater Freetown and cost recovery and creditworthiness. It will complement an ongoing project of the Africa Development Bank (AfD",
+          "score": 0.6013340353965759,
+          "source": "world_bank_projects",
+          "title": "Sierra Leone Water Security and WASH Access Improvement Project",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P507588"
+        }
+      ],
+      "retrieval": {
+        "recall": 0.0,
+        "reciprocal_rank": 0.0,
+        "found": [],
+        "missed": [
+          "http://arxiv.org/abs/2107.10317v2",
+          "http://arxiv.org/abs/2505.11512v1",
+          "http://arxiv.org/abs/2607.16931v1",
+          "wb_P513679"
+        ]
+      },
+      "cited": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) utilizes Disbursement-Linked Indicators (DLIs) to incentivize scaling up restoration and market linkages.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) includes verifying non-forest emission reductions as a DLI.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) expands sustainable landscape management as a DLI.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) establishes Participatory Forest Management with legally recognized cooperatives and approved Forest Management Plans as a DLI.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) treats acid soils as a DLI.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) integrates cooperatives into existing and new value chains as a DLI.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) focuses on expanding and digitizing secure tenure through issuing Second Level Land Holding Certificates (SLLCs).",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The IPF component of the World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) will provide cross-cutting technical assistance and capacity building across both result areas and the broader government program (ESIF 2).",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) includes support for agribusiness development by linking landholders to agribusinesses.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) will design and implement payment for ecosystem services (PES) schemes.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) will support access to carbon markets.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s Community Action for Landscape Management Program for Results (Source [1]) involves baseline surveys, voluntary land exchange, and design, testing, and documentation of a computerized platform in real-world conditions.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Research (Source [2]) estimates a 32.03% overreporting rate in climate adaptation finance with a credible interval of [19.81%;48.34%].",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cAdditional Financing for Regional Sahel Pastoralism Support Project II Burkina Faso\u201d (Source [3]) prioritizes women, youth, and IDPs.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cAdditional Financing for Regional Sahel Pastoralism Support Project II Burkina Faso\u201d (Source [3]) will increase the cost of Component 3 to US$12.9 million.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cAdditional Financing for Regional Sahel Pastoralism Support Project II Burkina Faso\u201d (Source [3]) will use IDA resources to purchase food in the current context.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cAdditional Financing for Regional Sahel Pastoralism Support Project II Burkina Faso\u201d (Source [3]) will purchase and distribute nutritional supplements to address malnutrition.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cBolivia Resilient Water Management for Community and Household Irrigation Project\u201d (Source [4]) focuses on basins located in the 9 departments of Bolivia.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cBolivia Resilient Water Management for Community and Household Irrigation Project\u201d (Source [4]) employs a bottom-up approach, prioritizing basins based on aridity, poverty, and population density.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cBolivia Resilient Water Management for Community and Household Irrigation Project\u201d (Source [4]) will sequence activities to focus initially on basins with high levels of need and readiness.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The World Bank\u2019s \u201cSierra Leone Water Security and WASH Access Improvement Project\u201d (Source [5]) will prepare a map of priority areas suggesting catchment restorative nature-based solutions.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "What are the projected sea-level rises by 2100 under different scenarios?",
+      "intent": "scientific",
+      "answer": "Based on the provided sources, projections for sea-level rise by 2100 vary significantly. Initially, estimates ranged from 0.6 to 0.9 meters between 2007 and 2013 [1], but subsequently expanded to a range of 0.5 to 2.5 meters [1]. More recently, projections have narrowed, with upper projections now estimated between 0.6 and 0.9 meters [1]. \n\nFurthermore, research utilizing machine learning of altimeter data and climate model simulations suggests a global mean sea level rise of 3.4mm/year [2]. The framework developed in this study projects sea level rise at a 2-degree resolution spatial grid, 30 years into the future, using machine learning to predict altimeter values [2]. Finally, source [5] proposes the use of AADLL (Average Annual Design Life Level) and DL-SLR (Design Life SLR) allowances to account for evolving coastal flood risk under uncertain local sea-level rise, providing estimates of flood protection heights and offsets for different planning horizons [5].",
+      "seconds": 83.35101029299767,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/1810.08145v1",
+          "parent_id": "http://arxiv.org/abs/1810.08145v1",
+          "content": "Title: Evolution of 21st Century Sea-level Rise Projections\nAbstract: The modern era of scientific global-mean sea-level rise (SLR) projections began in the early 1980s. In subsequent decades, understanding of driving processes has improved, and new methodologies have been developed. Nonetheless, despite more than 70 studies, future SLR remains deeply uncertain. To facilitate understanding of the historical development of SLR projections and contextualize current projections, we have compiled a comprehensive database of 21st century global SLR projections. Although central estimates of 21st century global-mean SLR have been relatively consistent, the range of projected SLR has varied greatly over time. Among studies providing multiple estimates, the range of upper projections shrank from 1.3 to 1.8 m during the 1980s to 0.6 to 0.9 m in 2007, before expanding again to 0.5 to 2.5 m since 2013. Upper projections of SLR from individual studies are generally higher than upper projections from the Intergovernmental Panel on Climate Change, potentially due to differing percentile bounds, or a pre-disposition of consensus-based approaches toward relatively conservative outcomes.",
+          "score": 0.8194901943206787,
+          "source": "arxiv",
+          "title": "Evolution of 21st Century Sea-level Rise Projections",
+          "url": "http://arxiv.org/abs/1810.08145v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2308.02460v1",
+          "parent_id": "http://arxiv.org/abs/2308.02460v1",
+          "content": "Title: Sea level Projections with Machine Learning using Altimetry and Climate Model ensembles\nAbstract: Satellite altimeter observations retrieved since 1993 show that the global mean sea level is rising at an unprecedented rate (3.4mm/year). With almost three decades of observations, we can now investigate the contributions of anthropogenic climate-change signals such as greenhouse gases, aerosols, and biomass burning in this rising sea level. We use machine learning (ML) to investigate future patterns of sea level change. To understand the extent of contributions from the climate-change signals, and to help in forecasting sea level change in the future, we turn to climate model simulations. This work presents a machine learning framework that exploits both satellite observations and climate model simulations to generate sea level rise projections at a 2-degree resolution spatial grid, 30 years into the future. We train fully connected neural networks (FCNNs) to predict altimeter values through a non-linear fusion of the climate model hindcasts (for 1993-2019). The learned FCNNs are then applied to future climate model projections to predict future sea level patterns. We propose segmenting our spatial dataset into meaningful clusters and show that clustering helps to improve predictions of our ML model.",
+          "score": 0.7355492115020752,
+          "source": "arxiv",
+          "title": "Sea level Projections with Machine Learning using Altimetry and Climate Model ensembles",
+          "url": "http://arxiv.org/abs/2308.02460v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2312.08031v2",
+          "parent_id": "http://arxiv.org/abs/2312.08031v2",
+          "content": "Title: Exploring Key Aspects of Sea Level Rise and their Implications: An Overview\nAbstract: Sea Level Rise (SLR) is one of the most pressing challenges of climate change and has drawn noticeable research interest over the past few decades. Factors induced by global climate change such as temperature increase, have resulted in both direct and indirect changes in sea levels at different spatial scales. A number of climatic and non-climatic events drive the change in sea level and impose risk on coastal and low-lying areas. Nevertheless, changes in sea level are not uniformly distributed globally due to a number of regional factors such as wave actions, storm surge frequencies, and tectonic land movement. The high exposure to those factors increases the vulnerability of subjected areas to SLR impacts. The impacts of events induced by climate change and SLR are reflected in biophysical, socioeconomic, and environmental aspects. Different indicator-based and model-based approaches are used to assess coastal areas' vulnerabilities, response to impacts, and implementation of adaptation and mitigation measures. Various studies were made to project future SLR impacts and evaluate implemented protection and adaptation approaches to help policymakers plan effective adaptation and mitigation measures and reduce damage. This paper provides an overview of SLR and its key elements encompassing contributing factors, impacts, and mitigation and adaptation measures with a case study focus on the Arabian Gulf.",
+          "score": 0.733246922492981,
+          "source": "arxiv",
+          "title": "Exploring Key Aspects of Sea Level Rise and their Implications: An Overview",
+          "url": "http://arxiv.org/abs/2312.08031v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/1708.01240v3",
+          "parent_id": "http://arxiv.org/abs/1708.01240v3",
+          "content": "Title: Using Direct Policy Search to Identify Robust Strategies in Adapting to Uncertain Sea Level Rise and Storm Surge\nAbstract: Sea-level rise poses considerable risks to coastal communities, ecosystems, and infrastructure. Decision makers are faced with uncertain sea-level projections when designing a strategy for coastal adaptation. The traditional methods are often silent on tradeoffs as well as the effects of tail-area events and of potential future learning. Here we reformulate a simple sea-level rise adaptation model to address these concerns. We show that Direct Policy Search yields improved solution quality, with respect to Pareto-dominance in the objectives, over the traditional approach under uncertain sea-level rise projections and storm surge. Additionally, the new formulation produces high quality solutions with less computational demands than an intertemporal optimization approach. Our results illustrate the utility of multi-objective adaptive formulations for the example of coastal adaptation and point to wider-ranging application in climate change adaptation decision problems.",
+          "score": 0.731346607208252,
+          "source": "arxiv",
+          "title": "Using Direct Policy Search to Identify Robust Strategies in Adapting to Uncertain Sea Level Rise and Storm Surge",
+          "url": "http://arxiv.org/abs/1708.01240v3"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/1510.08550v3",
+          "parent_id": "http://arxiv.org/abs/1510.08550v3",
+          "content": "Title: Allowances for evolving coastal flood risk under uncertain local sea-level rise\nAbstract: Sea-level rise (SLR) causes estimates of flood risk made under the assumption of stationary mean sea level to be biased low. However, adjustments to flood return levels made assuming fixed increases of sea level are also inaccurate when applied to sea level that is rising over time at an uncertain rate. To accommodate both the temporal dynamics of SLR and their uncertainty, we develop an Average Annual Design Life Level (AADLL) metric and associated Design Life SLR (DL-SLR) allowances. The AADLL is the flood level corresponding to a time-integrated annual expected probability of occurrence (AEP) under uncertainty over the design life of an asset; DL-SLR allowances are the adjustment from 2000 levels that maintain current average probability over the design life. Given non-stationary and uncertain sea-level rise, AADLL flood levels and DL-SLR allowances provide estimates of flood protection heights and offsets for different planning horizons and different levels of confidence in SLR projections in coastal areas. Here we employ probabilistic sea-level rise projections to illustrate the calculation of AADLL flood levels and DL-SLR allowances for a set of long-duration tide gauges along U.S. coastlines.",
+          "score": 0.7047734260559082,
+          "source": "arxiv",
+          "title": "Allowances for evolving coastal flood risk under uncertain local sea-level rise",
+          "url": "http://arxiv.org/abs/1510.08550v3"
+        }
+      ],
+      "retrieval": {
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/1810.08145v1",
+          "http://arxiv.org/abs/2308.02460v1",
+          "http://arxiv.org/abs/2312.08031v2",
+          "http://arxiv.org/abs/1510.08550v3"
+        ],
+        "missed": []
+      },
+      "cited": [
+        1,
+        2,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "The range of projected sea-level rise (SLR) has varied greatly over time, initially ranging from 0.6 to 0.9 meters between 2007 and 2013.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Since 2013, the range of projected SLR has expanded to 0.5 to 2.5 meters.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "More recently, upper projections of SLR have narrowed to a range of 0.6 to 0.9 meters.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Satellite altimeter observations show a global mean sea level rise of 3.4mm/year.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "A machine learning framework is being used to project sea level rise at a 2-degree resolution spatial grid, 30 years into the future.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          },
+          {
+            "claim": "AADLL (Average Annual Design Life Level) and DL-SLR (Design Life SLR) allowances are being developed to account for evolving coastal flood risk under uncertain local sea-level rise.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "Describe the financial mechanisms available for climate adaptation.",
+      "intent": "implementation",
+      "answer": "Several financial mechanisms are proposed for climate adaptation, primarily focused on addressing the significant financial gap hindering infrastructure adaptation projects [3]. One approach, termed \u201cclimate-contingent finance,\u201d involves investors providing funding based on the level of climate change impacts, effectively hedging risk for both adapting entities and investors [1]. This system aims to coordinate capital and provide diversified returns, unlike traditional insurance which merely hedges against damage. Another mechanism utilizes integrated carbon markets, combining carbon taxes and markets to incentivize private capital investment in adaptation alongside mitigation efforts [3]. \n\nHowever, significant barriers exist, notably the unprofitability and uncertainty surrounding long-term adaptation projects, leading to a lack of private capital [3]. Furthermore, there is evidence of substantial overreporting in climate adaptation finance, with estimates suggesting that reported figures are inflated by as much as 32% [4]. This highlights the difficulty in accurately assessing the true scale of investment and underscores the need for improved data collection and analysis methods, as demonstrated by a text classification approach incorporating Bayesian correction [4]. Finally, firms can adapt through capital hardening and backup-supplier search, but even firms not directly impacted by flooding can still experience disruption through cascading effects within supply chains [5].",
+      "seconds": 50.15746943800332,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/2207.02064v1",
+          "parent_id": "http://arxiv.org/abs/2207.02064v1",
+          "content": "Title: Climate-Contingent Finance\nAbstract: Climate adaptation could yield significant benefits. However, the uncertainty of which future climate scenarios will occur decreases the feasibility of proactively adapting. Climate adaptation projects could be underwritten by benefits paid for in the climate scenarios that each adaptation project is designed to address because other entities would like to hedge the financial risk of those scenarios. Because the return on investment is a function of the level of climate change, it is optimal for the adapting entity to finance adaptation with repayment as a function of the climate. It is also optimal for entities with more financial downside under a more extreme climate to serve as an investing counterparty because they can obtain higher than market rates of return when they need it most. In this way, parties proactively adapting would reduce the risk they over-prepare, while their investors would reduce the risk they under-prepare. This is superior to typical insurance because, by investing in climate-contingent mechanisms, investors are not merely financially hedging but also outright preventing physical damage, and therefore creating economic value. This coordinates capital through time and place according to parties' risk reduction capabilities and financial profiles, while also providing a diversifying investment return. Climate-contingent finance can be generalized to any situation where entities share exposure to a risk where they lack direct control over whether it occurs (e.g., climate change, or a natural pandemic), and one type of entity can take proactive actions to benefit from addressing the effects of the risk if it occurs (e.g., through innovating on crops that would do well under extreme climate change or vaccination technology that could address particular viruses) with funding from another type of entity that seeks a targeted return to ameliorate the downside.",
+          "score": 0.813248872756958,
+          "source": "arxiv",
+          "title": "Climate-Contingent Finance",
+          "url": "http://arxiv.org/abs/2207.02064v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2210.11525v1",
+          "parent_id": "http://arxiv.org/abs/2210.11525v1",
+          "content": "Title: On the Financing of Climate Change Adaptation in Developing Countries\nAbstract: I offer reflections on adaptation to climate change, with emphasis on developing areas.",
+          "score": 0.8075456023216248,
+          "source": "arxiv",
+          "title": "On the Financing of Climate Change Adaptation in Developing Countries",
+          "url": "http://arxiv.org/abs/2210.11525v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2501.08004v2",
+          "parent_id": "http://arxiv.org/abs/2501.08004v2",
+          "content": "Title: A Sustainable Circular Framework for Financing Infrastructure Climate Adaptation: Integrated Carbon Markets\nAbstract: Climate physical risks pose an increasing threat to urban infrastructure, necessitating urgent climate adaptation measures to protect lives and assets. Implementing such measures, including the development of resilient infrastructure and retrofitting existing systems, demands substantial financial investment. Unfortunately, due to the unprofitability stemming from the long-term returns, uncertainty, and complexity of infrastructure adaptation projects and the short-term profit-seeking objectives of private capital, a massive financial gap remains. This study suggests incentivizing private capital to bridge financial gaps through integrated carbon markets. Specifically, the framework combines carbon taxes and carbon markets to involve infrastructure and individuals in the climate mitigation phase, using the funds collected for climate adaptation. Moreover, it integrates lifestyle reformation, environmental mitigation, and infrastructure adaptation to establish harmonized standards and provide circular positive feedback to sustain the markets. We further explore how integrated carbon markets can facilitate fund collection and discuss the challenges of incorporating them into infrastructure climate adaptation. This study aims to foster collaboration between private and public capital to enable a more scientific, rational, and actionable implementation of integrated carbon markets, thus supporting sustainable financial backing for infrastructure climate adaptation",
+          "score": 0.7958594560623169,
+          "source": "arxiv",
+          "title": "A Sustainable Circular Framework for Financing Infrastructure Climate Adaptation: Integrated Carbon Markets",
+          "url": "http://arxiv.org/abs/2501.08004v2"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2211.16947v1",
+          "parent_id": "http://arxiv.org/abs/2211.16947v1",
+          "content": "Title: Using Text Classification with a Bayesian Correction for Estimating Overreporting in the Creditor Reporting System on Climate Adaptation Finance\nAbstract: Development funds are essential to finance climate change adaptation and are thus an important part of international climate policy. % However, the absence of a common reporting practice makes it difficult to assess the amount and distribution of such funds. Research has questioned the credibility of reported figures, indicating that adaptation financing is in fact lower than published figures suggest. Projects claiming a greater relevance to climate change adaptation than they target are referred to as \"overreported\". To estimate realistic rates of overreporting in large data sets over times, we propose an approach based on state-of-the-art text classification. To date, assessments of credibility have relied on small, manually evaluated samples. We use such a sample data set to train a classifier with an accuracy of $89.81\\% \\pm 0.83\\%$ (tenfold cross-validation) and extrapolate to larger data sets to identify overreporting. Additionally, we propose a method that incorporates evidence of smaller, higher-quality data to correct predicted rates using Bayes' theorem. This enables a comparison of different annotation schemes to estimate the degree of overreporting in climate change adaptation. Our results support findings that indicate extensive overreporting of $32.03\\%$ with a credible interval of $[19.81\\%;48.34\\%]$.",
+          "score": 0.7630207538604736,
+          "source": "arxiv",
+          "title": "Using Text Classification with a Bayesian Correction for Estimating Overreporting in the Creditor Reporting System on Climate Adaptation Finance",
+          "url": "http://arxiv.org/abs/2211.16947v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2509.18633v4",
+          "parent_id": "http://arxiv.org/abs/2509.18633v4",
+          "content": "Title: Modelling Cascading Physical Climate Risk in Supply Chains with Adaptive Firms: A Spatial Agent-Based Framework\nAbstract: We present an open-source Python framework for modelling cascading physical climate risk in a spatial supply-chain economy. The framework integrates geospatial flood hazards with an agent-based model of firms and households, enabling simulation of both direct asset losses and indirect disruptions propagated through economic networks. Firms adapt endogenously through two channels: capital hardening, which reduces direct damage, and backup-supplier search, which mitigates input disruptions. In an illustrative global network, capital hardening reduces direct losses by 26%, while backup-supplier search reduces supplier disruption by 48%, with both partially stabilizing production and consumption. Notably, firms that are never directly flooded still bear a substantial share of disruption, highlighting the importance of indirect cascade effects. The framework provides a reproducible platform for analyzing systemic physical climate risk and adaptation in economic networks.",
+          "score": 0.746534526348114,
+          "source": "arxiv",
+          "title": "Modelling Cascading Physical Climate Risk in Supply Chains with Adaptive Firms: A Spatial Agent-Based Framework",
+          "url": "http://arxiv.org/abs/2509.18633v4"
+        }
+      ],
+      "retrieval": {
+        "recall": 0.8,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/2207.02064v1",
+          "http://arxiv.org/abs/2210.11525v1",
+          "http://arxiv.org/abs/2501.08004v2",
+          "http://arxiv.org/abs/2211.16947v1"
+        ],
+        "missed": [
+          "wb_P518719"
+        ]
+      },
+      "cited": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "Climate adaptation could yield significant benefits, but the uncertainty of future climate scenarios decreases the feasibility of proactively adapting [1]",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Climate-contingent finance involves investors providing funding based on the level of climate change impacts, effectively hedging risk for both adapting entities and investors [1]",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Implementing climate adaptation measures, including resilient infrastructure and retrofitting existing systems, demands substantial financial investment [3]",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "A massive financial gap remains due to the unprofitability, uncertainty, and complexity of infrastructure adaptation projects and the short-term profit-seeking objectives of private capital [3]",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "Estimates suggest that reported figures for climate adaptation finance are inflated by as much as 32% due to overreporting [4]",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "A text classification approach with a Bayesian correction can be used to estimate realistic rates of overreporting in large data sets [4]",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "Firms can adapt through capital hardening and backup-supplier search, partially stabilizing production and consumption [5]",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          },
+          {
+            "claim": "Even firms not directly flooded can still experience disruption through cascading effects within supply chains [5]",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "What are the major barriers to implementing carbon capture and storage technologies?",
+      "intent": "implementation",
+      "answer": "Based on the provided sources, several barriers exist to the widespread implementation of carbon capture and storage (CCS) technologies, primarily related to financing and operational challenges. \n\nFirstly, significant financial gaps remain due to the unprofitability and uncertainty surrounding infrastructure adaptation projects, compounded by the short-term profit-seeking motives of private capital [4]. The framework suggests utilizing integrated carbon markets \u2013 combining carbon taxes and markets \u2013 to incentivize private investment in climate adaptation, including CCS [4]. However, the study acknowledges challenges in incorporating these markets into infrastructure projects. Secondly, operational barriers are highlighted in source [5], specifically regarding the transition to cleaner vehicles in Delhi. These include gaps in charging infrastructure (inadequate charger density, uneven distribution, limited options for commercial vehicles, and grid connectivity issues) which constrain the pace of electrification, a key opportunity for emission reduction. Finally, source [2] suggests that increasing depth and permeability of storage sites can lead to increased CO2 injection rates and reduced costs, but this requires significant investment and careful site characterization. Source [1] indicates that the combination of renewables, CCS, and carbon pricing could enable significant carbon reduction (55-67%) by 2050, but the economic merits of CCS depend on deployment regimes and continued carbon pricing.",
+      "seconds": 56.61899629099935,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/2305.05165v1",
+          "parent_id": "http://arxiv.org/abs/2305.05165v1",
+          "content": "Title: Assessing the optimal contributions of renewables and carbon capture and storage toward carbon neutrality by 2050\nAbstract: Building on the carbon reduction targets agreed in the Paris Agreements, many nations have renewed their efforts toward achieving carbon neutrality by the year 2050. In line with this ambitious goal, nations are seeking to understand the appropriate combination of technologies which will enable the required reductions in such a way that they are appealing to investors. Around the globe, solar and wind power lead in terms of renewable energy deployment, while carbon capture and storage (CCS) is scaling up toward making a significant contribution to deep carbon cuts. Using Japan as a case study nation, this research proposes a linear optimization modeling approach to identify the potential contributions of renewables and CCS toward maximizing carbon reduction and identifying their economic merits over time. Results identify that the combination of these three technologies could enable a carbon dioxide emission reduction of between 55 and 67 percent in the energy sector by 2050 depending on resilience levels and CCS deployment regimes. Further reductions are likely to emerge with increased carbon pricing over time.",
+          "score": 0.7505711317062378,
+          "source": "arxiv",
+          "title": "Assessing the optimal contributions of renewables and carbon capture and storage toward carbon neutrality by 2050",
+          "url": "http://arxiv.org/abs/2305.05165v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2005.13688v1",
+          "parent_id": "http://arxiv.org/abs/2005.13688v1",
+          "content": "Title: Great SCO2T! Rapid tool for carbon sequestration science, engineering, and economics\nAbstract: CO2 capture and storage (CCS) technology is likely to be widely deployed in coming decades in response to major climate and economics drivers: CCS is part of every clean energy pathway that limits global warming to 2C or less and receives significant CO2 tax credits in the United States. These drivers are likely to stimulate capture, transport, and storage of hundreds of millions or billions of tonnes of CO2 annually. A key part of the CCS puzzle will be identifying and characterizing suitable storage sites for vast amounts of CO2. We introduce a new software tool called SCO2T (Sequestration of CO2 Tool, pronounced \"Scott\") to rapidly characterizing saline storage reservoirs. The tool is designed to rapidly screen hundreds of thousands of reservoirs, perform sensitivity and uncertainty analyses, and link sequestration engineering (injection rates, reservoir capacities, plume dimensions) to sequestration economics (costs constructed from around 70 separate economic inputs). We describe the novel science developments supporting SCO2T including a new approach to estimating CO2 injection rates and CO2 plume dimensions as well as key advances linking sequestration engineering with economics. Next, we perform a sensitivity and uncertainty analysis of geology combinations (including formation depth, thickness, permeability, porosity, and temperature) to understand the impact on carbon sequestration. Through the sensitivity analysis we show that increasing depth and permeability both can lead to increased CO2 injection rates, increased storage potential, and reduced costs, while increasing porosity reduces costs without impacting the injection rate (CO2 is injected at a constant pressure in all cases) by increasing the reservoir capacity.",
+          "score": 0.7299467325210571,
+          "source": "arxiv",
+          "title": "Great SCO2T! Rapid tool for carbon sequestration science, engineering, and economics",
+          "url": "http://arxiv.org/abs/2005.13688v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2009.03600v1",
+          "parent_id": "http://arxiv.org/abs/2009.03600v1",
+          "content": "Title: Integration of hydrothermal liquefaction and carbon capture and storage for the production of advanced liquid biofuels with negative CO2 emissions\nAbstract: The technical and economic feasibility to deliver sustainable liquid biocrude through hydrothermal liquefaction (HTL) while enabling negative carbon dioxide emissions is evaluated in this paper, looking into the potential of the process in the context of negative emission technologies (NETs) for climate change mitigation. In the HTL process, a gas phase consisting mainly of carbon dioxide is obtained as a side product driving a potential for the implementation of carbon capture and storage in the process (BECCS) that has not been explored yet in the existing literature and is undertaken in this study. To this end, the process is divided in a standard HTL base and a carbon capture add-on, having forestry residues as feedstock. The Selexol technology is adapted in a novel scheme to simultaneously separate the CO2 from the HTL gas and recover the excess hydrogen for biocrude upgrading. The cost evaluation indicates that the additional cost of the carbon capture can be compensated by revenues from the excess process heat and the European carbon allowance market. The impact in the MFSP of the HTL base case ranges from -7% to 3%, with -15% in the most favorable scenario, with a GHG emissions reduction potential of 102-113% compared to the fossil baseline. These results show that the implementation of CCS in the HTL process is a promising alternative from technical, economic and environmental perspective in future scenarios in which advanced liquid biofuels and NETs are expected to play a role in the decarbonization of the energy system.",
+          "score": 0.7238622903823853,
+          "source": "arxiv",
+          "title": "Integration of hydrothermal liquefaction and carbon capture and storage for the production of advanced liquid biofuels with negative CO2 emissions",
+          "url": "http://arxiv.org/abs/2009.03600v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2501.08004v2",
+          "parent_id": "http://arxiv.org/abs/2501.08004v2",
+          "content": "Title: A Sustainable Circular Framework for Financing Infrastructure Climate Adaptation: Integrated Carbon Markets\nAbstract: Climate physical risks pose an increasing threat to urban infrastructure, necessitating urgent climate adaptation measures to protect lives and assets. Implementing such measures, including the development of resilient infrastructure and retrofitting existing systems, demands substantial financial investment. Unfortunately, due to the unprofitability stemming from the long-term returns, uncertainty, and complexity of infrastructure adaptation projects and the short-term profit-seeking objectives of private capital, a massive financial gap remains. This study suggests incentivizing private capital to bridge financial gaps through integrated carbon markets. Specifically, the framework combines carbon taxes and carbon markets to involve infrastructure and individuals in the climate mitigation phase, using the funds collected for climate adaptation. Moreover, it integrates lifestyle reformation, environmental mitigation, and infrastructure adaptation to establish harmonized standards and provide circular positive feedback to sustain the markets. We further explore how integrated carbon markets can facilitate fund collection and discuss the challenges of incorporating them into infrastructure climate adaptation. This study aims to foster collaboration between private and public capital to enable a more scientific, rational, and actionable implementation of integrated carbon markets, thus supporting sustainable financial backing for infrastructure climate adaptation",
+          "score": 0.6964609026908875,
+          "source": "arxiv",
+          "title": "A Sustainable Circular Framework for Financing Infrastructure Climate Adaptation: Integrated Carbon Markets",
+          "url": "http://arxiv.org/abs/2501.08004v2"
+        },
+        {
+          "doc_id": "wb_P517479#3",
+          "parent_id": "wb_P517479",
+          "content": "Systematic solutions to decouple growth in transport demand from emissions, while transitioning towards cleaner vehicles, could significantly reduce transport emissions. While electrification presents a major opportunity for emission reduction, the pace of transition is constrained by gaps in charging infrastructure, including inadequate charger density, uneven spatial distribution of charging stations, limited charging options for commercial and heavy-duty vehicles, and challenges related to land availability and grid connectivity. The first phase interventions for transport sector would focus on strengthening enforcement systems and enabling conditions for scaled transition to cleaner and public transport. Key activities would include (i) enhancing enforcement mechanisms to limit entry and operation of high emitting (pre-BS VI vehicles) and end-of-life vehicles; (ii) accelerating EV uptake under the upcoming Delhi EV Policy 2.0, particularly in two- and three-wheelers and goods vehicles, and scaling up public charging infrastructure; (iii) strengthening the electric bus (e-bus) ecosystem through bus service optimization and depot infrastructure readiness; (iv) operationalizing the Delhi Unified Metropolitan Transport Authority (DUMTA) and preparing a Comprehensive Mobility Plan (CMP) for integrated planning and delivery of mobility services in the city. Strategic Alignment to CPF. DCAP is closely aligned with the India CPF FY2026-2031 and with the vision for a Viksit Bharat 2047. The operation would address a critical challenge identified in the CPF - poor air quality - and support the CPF\u2019s emphasis on improved livability, sustainability, and management in the megacity of Delhi NCT.",
+          "score": 0.6901594400405884,
+          "source": "world_bank_projects",
+          "title": "Delhi Clean Air Program - Phase 1",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P517479"
+        }
+      ],
+      "retrieval": {
+        "recall": 0.75,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/2305.05165v1",
+          "http://arxiv.org/abs/2005.13688v1",
+          "http://arxiv.org/abs/2009.03600v1"
+        ],
+        "missed": [
+          "http://arxiv.org/abs/2409.18981v1"
+        ]
+      },
+      "cited": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "The combination of renewables, CCS, and carbon pricing could enable a carbon dioxide emission reduction of between 55 and 67 percent in the energy sector by 2050 depending on resilience levels and CCS deployment regimes.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "A massive financial gap remains due to the unprofitability and uncertainty surrounding infrastructure adaptation projects and the short-term profit-seeking objectives of private capital.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "Integrated carbon markets, combining carbon taxes and markets, are suggested as a way to incentivize private investment in climate adaptation, including CCS.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "Gaps in charging infrastructure, including inadequate charger density, uneven spatial distribution of charging stations, limited charging options for commercial and heavy-duty vehicles, and challenges related to land availability and grid connectivity, constrain the pace of electrification.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          },
+          {
+            "claim": "Increasing depth and permeability of storage sites can lead to increased CO2 injection rates, increased storage potential, and reduced costs.",
+            "verdict": "supported",
+            "sources": [
+              2
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "question": "How does agriculture contribute to greenhouse gas emissions?",
+      "intent": "scientific",
+      "answer": "Agriculture contributes to greenhouse gas emissions through several pathways, as evidenced by [1, 2, 3, 4, and 5]. Specifically, agricultural production, particularly livestock and rice cultivation, is a major source of emissions [1, 3]. Studies demonstrate methane and nitrous oxide emissions from rice production, with alternate wetting and drying (AWD) techniques reducing methane emissions by 71-85% [3]. Furthermore, nitrogen application and deforestation scenarios contribute to increased nitrous oxide emissions [2]. The agricultural product supply chain, when utilizing carbon sink trading, can reduce emissions through cooperative models, with the centralized model proving most effective [4]. Research also indicates that agriculture accounts for approximately 30% of global greenhouse gas emissions [4]. Finally, a bibliometric analysis of recent research (2019-2021) reveals a significant increase in studies examining the links between agriculture, renewable energy use, and greenhouse gas emissions [5].",
+      "seconds": 43.78089876600279,
+      "contexts": [
+        {
+          "doc_id": "http://arxiv.org/abs/2305.13253v1",
+          "parent_id": "http://arxiv.org/abs/2305.13253v1",
+          "content": "Title: Study of the problem of reducing greenhouse gas emissions in agricultural production Czech Republic\nAbstract: Agricultural production is the main source of greenhouse gas emissions, and therefore it has a great influence on the dynamics of changes in global warming. The article investigated the problems faced by Czech agricultural producers on the way to reduce greenhouse gas emissions. The author analyzed the dynamics of greenhouse gas emissions by various branches of agriculture for the period 2000-2015. The author proposed the coefficient t -covariances to determine the interdependence of the given tabular macroeconomic values. This indicator allows you to analyze the interdependence of macroeconomic variables that do not have a normal distribution. In the context of the globalization of the economy and the need to combat global warming in each country, it makes sense to produce primarily agricultural products that provide maximum added value with maximum greenhouse gas emissions.",
+          "score": 0.8104473948478699,
+          "source": "arxiv",
+          "title": "Study of the problem of reducing greenhouse gas emissions in agricultural production Czech Republic",
+          "url": "http://arxiv.org/abs/2305.13253v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2308.11632v1",
+          "parent_id": "http://arxiv.org/abs/2308.11632v1",
+          "content": "Title: Alternative Agriculture Land-Use Transformation Pathways by Partial-Equilibrium Agricultural Sector Model: A Mathematical Approach\nAbstract: Humanity's progress in combating hunger, poverty, and child mortality is marred by escalating environmental degradation due to rising greenhouse gas emissions and climate change impacts. Despite positive developments, ecosystems are suffering globally. Regional strategies for mitigating and adapting to climate change must be viewed from a global perspective. The 2015 UN Sustainable Development Goals reflect the challenge of balancing social and environmental aspects for sustainable development. Agriculture, vital for food production, also threatens Earth systems. A study examines the interplay of land-use impacts, modeling crop and livestock trade, and their effects on climate, biodiversity, water, and land using a Partial-Equilibrium Agricultural Sector Model. Different scenarios involving taxing externalities related to Earth processes were tested. Results show synergies in reducing emissions, biodiversity loss, water use, and phosphorus pollution, driven by shifts in crop management. Nitrogen application and deforestation scenarios exhibit weaker synergies and more conflicts. The study offers insights into SDG interactions and the potential for sustainable farming.",
+          "score": 0.7725481986999512,
+          "source": "arxiv",
+          "title": "Alternative Agriculture Land-Use Transformation Pathways by Partial-Equilibrium Agricultural Sector Model: A Mathematical Approach",
+          "url": "http://arxiv.org/abs/2308.11632v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2006.02840v1",
+          "parent_id": "http://arxiv.org/abs/2006.02840v1",
+          "content": "Title: Reducing greenhouse gas emissions and grain arsenic and lead levels without compromising yield in organically produced rice\nAbstract: Flooded rice production is crucial to global food security, but there are associated environmental concerns. In particular, it is a significant source of methane and nitrous oxide emissions and a large consumer of water resources, while arsenic, cadmium and lead levels in the grain are a serious health concern. There is also a tendency to use more organic fertilisers to close nutrient cycles, posing a threat of even higher greenhouse gas emissions and grain arsenic levels. It has been shown that alternate wetting and drying (AWD) water management reduces both water use and greenhouse gas emissions, but success at maintaining yields varies. This study tested the effect of early AWD (e-AWD) versus continuous flooding (CF) water management practices on grain yields, greenhouse gas emissions and grain arsenic, cadmium and lead levels in a split plot field experiment with organic fertilisers under organic management. The e-AWD water regime showed no difference in yield for the organic treatments. Yields significantly increased by 5 to 16 percent in the combination treatments. Root biomass and root length increased in the e-AWD treatments up to 72 and 41 percent, respectively. The e-AWD water regime reduced seasonal methane emissions by 71 to 85 percent for organic treatments and by 51 to 76 percent for combination treatments; this was linked to a 15 to 47 percent reduction in dissolved organic carbon. Nitrous oxide emissions increased by 23 to 305 percent but accounted for less than 20 percent of global warming potential. Area and yield scaled global warming potentials were reduced by 67 to 83 percent. The e-AWD regime altered soil redox potentials, resulting in a reduction in grain arsenic and lead concentrations of up to 66 % and 73 % respectively. Grain cadmium levels were also reduced up to 33 % in organic treatments.",
+          "score": 0.7563702464103699,
+          "source": "arxiv",
+          "title": "Reducing greenhouse gas emissions and grain arsenic and lead levels without compromising yield in organically produced rice",
+          "url": "http://arxiv.org/abs/2006.02840v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2407.05099v1",
+          "parent_id": "http://arxiv.org/abs/2407.05099v1",
+          "content": "Title: Equilibrium Strategies of Carbon Emission Reduction in Agricultural Product Supply Chain under Carbon Sink Trading\nAbstract: As global climate change and environmental issues escalate, carbon reduction has emerged as a paramount global concern. Agriculture accounts for approximately 30% of global greenhouse gas emissions, making carbon reduction in this sector crucial for attaining global emission targets. Carbon sink trading serves as a supplementary mechanism to achieve carbon peaking and neutrality, helping to lower the rate ofcarbon emissions. However, practical projects and research in the field of carbon sink trading are not enough currently. This work aims to thoroughly explore the cooperative models between farmers and retailers within the context of agricultural carbon sink trading, as well as the optimal decisions on the efforts to reduce carbon emission for both parties under different cooperative models. To this end, we delve into three distinct cooperative frameworks: the decentralized, the Stackelberg, and the centralized models, each accompanied by a corresponding differentialgame model. The Hamilton-Jacobi-Bellman equation is utilized to investigate the equilibrium strategies of each participant under these three cooperative models, respectively. Furthermore, we conducte numerical simulations to analyze the carbon emission reduction efforts of farmers and retailers, the carbon emission reduction level of the agricultural supply chain, and the overall profits of the supply chain. We also compare scenarios with and without carbon sink trading to provide a comprehensive assessment. The numerical results indicate that the centralized modelexcels in all aspects, followed by the Stackelberg model, with the decentralized model showing the weakest performance. Additionally, carbon sink trading can significantly increase the profits of the participants under each cooperative model.",
+          "score": 0.7347745895385742,
+          "source": "arxiv",
+          "title": "Equilibrium Strategies of Carbon Emission Reduction in Agricultural Product Supply Chain under Carbon Sink Trading",
+          "url": "http://arxiv.org/abs/2407.05099v1"
+        },
+        {
+          "doc_id": "http://arxiv.org/abs/2512.07905v1",
+          "parent_id": "http://arxiv.org/abs/2512.07905v1",
+          "content": "Title: Renewable Energies in the Agricultural Sector: A Perspective Analysis of the Last Three Years\nAbstract: Over the last three years, research on the application of renewable energies in the agricultural sector has grown significantly. In this study, we conducted a bibliometric analysis of global scientific production from 2019 to 2021 to identify trends, leading contributors, and emerging research areas. Based on 1378 documents retrieved from Scopus, we observed a clear upward trend in publications, with a peak in 2021. India, China, the United States, Italy, and the United Kingdom were the most productive countries, while key institutions from China, Iran, and the Netherlands led the research output. Our results reveal five major thematic clusters: renewable energy technologies in agriculture, bioenergy, sustainable agriculture, biomass energy, and the environmental impact of agricultural activities. Notable advances include agrovoltaic systems, the use of agricultural and livestock waste for biogas production, and the development of agricultural robots powered by renewable energy sources. Additionally, there is increasing interest in examining the links among agriculture, renewable energy use, and greenhouse gas emissions, aligned with global sustainability goals. This analysis highlights the evolution of the field, international collaboration patterns, and the most influential research lines, offering valuable insights to guide future scientific developments in integrating renewable energies within the agricultural sector.",
+          "score": 0.7304275631904602,
+          "source": "arxiv",
+          "title": "Renewable Energies in the Agricultural Sector: A Perspective Analysis of the Last Three Years",
+          "url": "http://arxiv.org/abs/2512.07905v1"
+        }
+      ],
+      "retrieval": {
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "found": [
+          "http://arxiv.org/abs/2305.13253v1",
+          "http://arxiv.org/abs/2308.11632v1",
+          "http://arxiv.org/abs/2006.02840v1",
+          "http://arxiv.org/abs/2407.05099v1"
+        ],
+        "missed": []
+      },
+      "cited": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "ungrounded_numbers": [],
+      "judge": {
+        "claims": [
+          {
+            "claim": "Agricultural production is the main source of greenhouse gas emissions, and therefore it has a great influence on the dynamics of changes in global warming.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "The study analyzed the dynamics of greenhouse gas emissions by various branches of agriculture for the period 2000-2015.",
+            "verdict": "supported",
+            "sources": [
+              1
+            ]
+          },
+          {
+            "claim": "Alternate wetting and drying (AWD) water management reduces both water use and greenhouse gas emissions.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "The e-AWD water regime showed no difference in yield for the organic treatments.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "Yields significantly increased by 5 to 16 percent in the combination treatments.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "The e-AWD water regime reduced seasonal methane emissions by 71 to 85 percent for organic treatments.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "Nitrous oxide emissions increased by 23 to 305 percent but accounted for less than 20 percent of global warming potential.",
+            "verdict": "supported",
+            "sources": [
+              3
+            ]
+          },
+          {
+            "claim": "Carbon sink trading can significantly increase the profits of the participants under each cooperative model.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "The centralized model excels in all aspects, followed by the Stackelberg model, with the decentralized model showing the weakest performance.",
+            "verdict": "supported",
+            "sources": [
+              4
+            ]
+          },
+          {
+            "claim": "Over the last three years, research on the application of renewable energies in the agricultural sector has grown significantly.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          },
+          {
+            "claim": "India, China, the United States, Italy, and the United Kingdom were the most productive countries.",
+            "verdict": "supported",
+            "sources": [
+              5
+            ]
+          }
+        ],
+        "error": null,
+        "faithfulness": 1.0
+      }
+    }
+  ]
+}

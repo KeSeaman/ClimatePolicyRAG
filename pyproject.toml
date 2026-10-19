@@ -1,37 +1,59 @@
 [project]
 name = "climate-rag"
-version = "0.1.0"
-description = "A Production-Ready Multi-Agent RAG System for Climate Policy"
+version = "0.3.0"
+description = "Multi-agent RAG over climate research (arXiv) and World Bank project data, with a Rust vector index"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "fastapi>=0.110.0",
-    "pydantic>=2.7.0",
-    "pydantic-settings>=2.2.0",
-    "toolz>=0.12.0",
-    "opentelemetry-api>=1.24.0",
-    "opentelemetry-sdk>=1.24.0",
-    "structlog>=24.1.0",
-    "maturin>=1.5.0",
-    "python-dotenv>=1.0.0",
-    "openai>=1.14.0",
-    "httpx>=0.27.0",
-    "lxml>=5.1.0",           # For advanced parsing if needed in logic
-    "numpy>=1.26.0",
+    "fastembed>=0.5",
+    "httpx>=0.27",
+    "numpy>=1.26",
+    "openai>=1.14",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.2",
+    "toolz>=0.12",
+]
+
+[project.scripts]
+climate-rag = "climate_rag.cli:main"
+
+[dependency-groups]
+dev = [
+    "maturin>=1.9,<2.0",
+    "mypy>=1.10",
+    "pytest>=8.0",
+    "ruff>=0.5",
 ]
 
 [build-system]
-requires = ["maturin>=1.5,<2.0"]
+requires = ["maturin>=1.9,<2.0"]
 build-backend = "maturin"
 
 [tool.maturin]
+# Mixed Rust/Python layout: the native module ships inside the climate_rag package.
+module-name = "climate_rag._core"
 features = ["pyo3/extension-module"]
-module-name = "climate_core"
+
+[tool.uv]
+# Rebuild the extension on `uv sync` / `uv run` when the Rust sources change.
+cache-keys = [{ file = "pyproject.toml" }, { file = "Cargo.toml" }, { file = "src/**/*.rs" }]
 
 [tool.ruff]
 line-length = 100
 target-version = "py312"
 
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP", "I", "SIM", "DTZ"]
+
 [tool.mypy]
 strict = true
+files = ["climate_rag", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["fastembed.*", "toolz.*"]
 ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["network: hits live external APIs (deselect with -m 'not network')"]
+addopts = "-m 'not network'"
