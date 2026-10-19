@@ -7,6 +7,7 @@ from climate_rag._core import Document, SearchResult, VectorIndex
 from climate_rag.knowledge_base import (
     IndexMismatchError,
     KnowledgeBase,
+    SearchOptions,
     read_documents,
     reciprocal_rank_fusion,
 )
@@ -90,10 +91,27 @@ def test_hybrid_search_adds_exact_keyword_matches() -> None:
         Document("ndc", "Countries submit NDCs to the UNFCCC every five years."),
     ])
 
-    assert [r.doc_id for r in kb.search("ndc", 3, "vector")] == ["solar", "wind", "ndc"]
-    hybrid = kb.search("ndc", 2, "hybrid")
+    assert [r.doc_id for r in kb.search("ndc", 3)] == ["solar", "wind", "ndc"]
+    hybrid = kb.search("ndc", 2, SearchOptions(mode="hybrid"))
     assert hybrid[0].doc_id == "ndc"
     assert hybrid[0].score == pytest.approx(1 / 61 + 1 / 63)  # vector rank 3, keyword rank 1
+
+
+def test_fusion_weights_and_constant() -> None:
+    a, b = result("a"), result("b")
+    # b ranks first in the second list; doubling the first list's weight keeps a ahead.
+    assert [r.doc_id for r in reciprocal_rank_fusion([[a, b], [b, a]], 2, [2.0, 1.0])] == ["a", "b"]
+    assert [r.doc_id for r in reciprocal_rank_fusion([[a, b], [b, a]], 2, [1.0, 2.0])] == ["b", "a"]
+    fused = reciprocal_rank_fusion([[a]], 1, rrf_k=10)
+    assert fused[0].score == pytest.approx(1 / 11)
+
+
+def test_original_query_weight_favours_the_question_over_rephrasings() -> None:
+    kb = KnowledgeBase(HashEmbedder())
+    kb.add_documents([Document("q", "question words"), Document("r", "rephrased text")])
+    queries = ["question words", "rephrased text", "rephrased text"]
+    assert kb.search(queries, 1)[0].doc_id == "r"  # two rephrasings outvote the question
+    assert kb.search(queries, 1, SearchOptions(original_weight=3.0))[0].doc_id == "q"
 
 
 def test_multi_query_search_fuses_all_phrasings() -> None:

@@ -1,5 +1,5 @@
 from climate_rag.agents.expansion import expand_query
-from climate_rag.knowledge_base import KnowledgeBase, SearchMode
+from climate_rag.knowledge_base import KnowledgeBase, SearchOptions
 from climate_rag.llm import LLM
 from climate_rag.models import AgentState, RetrievedContext
 
@@ -8,7 +8,7 @@ def retrieve_documents(
     state: AgentState,
     kb: KnowledgeBase,
     k: int = 5,
-    mode: SearchMode = "vector",
+    options: SearchOptions | None = None,
     expander: LLM | None = None,
 ) -> AgentState:
     """
@@ -19,7 +19,8 @@ def retrieve_documents(
     queries: tuple[str, ...] = (state.query,)
     if expander is not None:
         queries += tuple(expand_query(state.query, expander))
-    results = kb.search(queries, k, mode)
+    options = options or SearchOptions()
+    results = kb.search(queries, k, options)
 
     contexts = tuple(
         RetrievedContext(
@@ -37,5 +38,5 @@ def retrieve_documents(
     return (
         state.set_search_queries(queries)
         .add_contexts(contexts)
-        .add_log(f"Retrieved {len(contexts)} docs ({mode}, {len(queries)} queries)")
+        .add_log(f"Retrieved {len(contexts)} docs ({options.mode}, {len(queries)} queries)")
     )

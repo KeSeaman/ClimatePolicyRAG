@@ -1,6 +1,6 @@
 {
   "corpus_id": "c1c89a67bbb7",
-  "note": "Document-level relevance labels for the frozen corpus in eval/index. Labelled by Claude Code on 2026-10-19 by reading every document's title and abstract (not from retrieval results): a document is relevant if it contains information that helps answer the question, not merely a passing mention. Judgement calls; review before relying on them.",
+  "note": "Document-level relevance labels for the frozen corpus in eval/index, made by Claude Code on 2026-10-19 by reading the full text of all 80 documents. A document is relevant if it contains information that helps answer the question, not merely a passing mention. Split: the first 10 questions were inspected while building retrieval and are dev; the 30 added later were split 10 dev / 20 test by a seeded shuffle before any retrieval was run on them. Tune on dev; score test only to confirm a configuration. Revisions: after a full-text reread, the methane-vs-CO2 question gained wb_P508792 (GWP-based CO2e conversion) and the NDC-tracking question gained four documents describing MRV or emissions-inventory systems. Judgement calls; review before relying on them.",
   "questions": [
     {
       "question": "What are the key goals of the Paris Agreement regarding temperature limits?",
@@ -9,7 +9,8 @@
         "http://arxiv.org/abs/2412.13855v1",
         "http://arxiv.org/abs/2504.12832v1",
         "http://arxiv.org/abs/2512.13474v1"
-      ]
+      ],
+      "split": "dev"
     },
     {
       "question": "How does carbon pricing impact developing economies?",
@@ -17,7 +18,8 @@
         "http://arxiv.org/abs/2402.03800v1",
         "http://arxiv.org/abs/2512.24520v2",
         "http://arxiv.org/abs/2409.18981v1"
-      ]
+      ],
+      "split": "dev"
     },
     {
       "question": "What are the latest trends in renewable energy adoption in Europe?",
@@ -28,7 +30,8 @@
         "http://arxiv.org/abs/2003.08882v2",
         "http://arxiv.org/abs/2208.09169v2",
         "wb_P515275"
-      ]
+      ],
+      "split": "dev"
     },
     {
       "question": "Explain the role of forestry in carbon sequestration strategies.",
@@ -42,24 +45,32 @@
         "wb_P507869",
         "wb_P507271",
         "wb_P510697"
-      ]
+      ],
+      "split": "dev"
     },
     {
       "question": "What is the impact of methane emissions on global warming compared to CO2?",
       "relevant": [
         "http://arxiv.org/abs/2104.05506v2",
         "http://arxiv.org/abs/2308.11003v1",
-        "http://arxiv.org/abs/2512.14076v1"
-      ]
+        "http://arxiv.org/abs/2512.14076v1",
+        "wb_P508792"
+      ],
+      "split": "dev"
     },
     {
       "question": "How are NDCs (Nationally Determined Contributions) being tracked?",
       "relevant": [
         "wb_P513679",
+        "wb_P508941",
+        "wb_P508792",
         "http://arxiv.org/abs/2607.16931v1",
         "http://arxiv.org/abs/2505.11512v1",
-        "http://arxiv.org/abs/2107.10317v2"
-      ]
+        "http://arxiv.org/abs/2107.10317v2",
+        "wb_P512143",
+        "wb_P510697"
+      ],
+      "split": "dev"
     },
     {
       "question": "What are the projected sea-level rises by 2100 under different scenarios?",
@@ -68,7 +79,8 @@
         "http://arxiv.org/abs/2308.02460v1",
         "http://arxiv.org/abs/2312.08031v2",
         "http://arxiv.org/abs/1510.08550v3"
-      ]
+      ],
+      "split": "dev"
     },
     {
       "question": "Describe the financial mechanisms available for climate adaptation.",
@@ -78,7 +90,8 @@
         "http://arxiv.org/abs/2501.08004v2",
         "http://arxiv.org/abs/2211.16947v1",
         "wb_P518719"
-      ]
+      ],
+      "split": "dev"
     },
     {
       "question": "What are the major barriers to implementing carbon capture and storage technologies?",
@@ -87,7 +100,8 @@
         "http://arxiv.org/abs/2009.03600v1",
         "http://arxiv.org/abs/2305.05165v1",
         "http://arxiv.org/abs/2409.18981v1"
-      ]
+      ],
+      "split": "dev"
     },
     {
       "question": "How does agriculture contribute to greenhouse gas emissions?",
@@ -96,7 +110,243 @@
         "http://arxiv.org/abs/2006.02840v1",
         "http://arxiv.org/abs/2407.05099v1",
         "http://arxiv.org/abs/2308.11632v1"
-      ]
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "How likely is it that global warming will overshoot 1.5°C within the next couple of decades?",
+      "relevant": [
+        "http://arxiv.org/abs/2412.13855v1",
+        "http://arxiv.org/abs/2504.12832v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "What happens to the Atlantic Ocean's overturning circulation if a tipping threshold is temporarily exceeded?",
+      "relevant": [
+        "http://arxiv.org/abs/2504.12832v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "What cost declines would let India replace coal power with solar, wind and batteries?",
+      "relevant": [
+        "http://arxiv.org/abs/2107.04928v4",
+        "http://arxiv.org/abs/2409.18981v1"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "Which time horizon should be used when converting methane emissions into CO2 equivalents?",
+      "relevant": [
+        "http://arxiv.org/abs/2104.05506v2"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How will the EU's carbon border tax affect electricity prices in different European countries?",
+      "relevant": [
+        "http://arxiv.org/abs/2605.03304v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "Is there evidence that carbon taxes and emissions trading actually lower a country's emissions?",
+      "relevant": [
+        "http://arxiv.org/abs/2402.03800v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How should differences in wealth between countries affect what the global carbon price should be?",
+      "relevant": [
+        "http://arxiv.org/abs/2512.24520v2"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "Can nature loss be priced in government spending appraisals the way carbon is?",
+      "relevant": [
+        "http://arxiv.org/abs/2601.16801v1"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "Can seasonal swings in European wind and solar output be predicted ahead of time?",
+      "relevant": [
+        "http://arxiv.org/abs/2202.02258v2"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How much would expanding cross-border power lines help a mostly renewable European grid?",
+      "relevant": [
+        "http://arxiv.org/abs/1401.4298v1",
+        "http://arxiv.org/abs/1801.05290v2",
+        "http://arxiv.org/abs/2003.08882v2"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "Which energy storage options could compete with pumped hydro and lithium-ion batteries in a renewable-heavy grid?",
+      "relevant": [
+        "http://arxiv.org/abs/2208.09169v2",
+        "http://arxiv.org/abs/1801.05290v2"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How is the World Bank lowering investment risk for renewable energy developers in Ukraine?",
+      "relevant": [
+        "wb_P515275"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How much CO2 can tree planting in semi-arid regions remove from the atmosphere?",
+      "relevant": [
+        "http://arxiv.org/abs/2205.10641v7",
+        "http://arxiv.org/abs/1702.05249v2",
+        "http://arxiv.org/abs/2511.22720v2"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "Why has the carbon sink of French forests weakened since 2008?",
+      "relevant": [
+        "http://arxiv.org/abs/2505.11512v1"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "How does a rising carbon price change the best time to harvest a forest?",
+      "relevant": [
+        "http://arxiv.org/abs/1505.05669v2"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How can satellite imagery be used to find and quantify methane emissions?",
+      "relevant": [
+        "http://arxiv.org/abs/2308.11003v1",
+        "http://arxiv.org/abs/2607.16931v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "What is being done to reduce methane leaking from ageing gas pipelines and oil and gas facilities?",
+      "relevant": [
+        "wb_P508941",
+        "wb_P508792",
+        "wb_P513679",
+        "http://arxiv.org/abs/2506.03395v2",
+        "http://arxiv.org/abs/2308.11003v1"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "How do salinity and flooding in coastal wetlands influence methane release?",
+      "relevant": [
+        "http://arxiv.org/abs/2512.14076v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How reliable are estimates of methane from coal mines?",
+      "relevant": [
+        "http://arxiv.org/abs/2107.10317v2",
+        "http://arxiv.org/abs/2607.16931v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How should flood defences and coastal infrastructure be planned when future sea-level rise is uncertain?",
+      "relevant": [
+        "http://arxiv.org/abs/1510.08550v3",
+        "http://arxiv.org/abs/1708.01240v3",
+        "wb_P509666",
+        "http://arxiv.org/abs/2312.08031v2"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "How can private capital be attracted to pay for climate adaptation?",
+      "relevant": [
+        "http://arxiv.org/abs/2207.02064v1",
+        "http://arxiv.org/abs/2501.08004v2"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "Are reported figures for international adaptation funding inflated?",
+      "relevant": [
+        "http://arxiv.org/abs/2211.16947v1"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How do floods disrupt firms that are never directly flooded?",
+      "relevant": [
+        "http://arxiv.org/abs/2509.18633v4"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "How can a government get emergency money quickly after a drought or flood?",
+      "relevant": [
+        "wb_P518719"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "What geological properties make a saline reservoir cheaper for storing captured CO2?",
+      "relevant": [
+        "http://arxiv.org/abs/2005.13688v1"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "Can turning forestry waste into biofuel deliver negative emissions?",
+      "relevant": [
+        "http://arxiv.org/abs/2009.03600v1"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "How can rice paddies be managed to emit less methane?",
+      "relevant": [
+        "http://arxiv.org/abs/2006.02840v1"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "What is being done about air pollution in Delhi and northern Pakistan?",
+      "relevant": [
+        "wb_P517479",
+        "wb_P512143"
+      ],
+      "split": "dev"
+    },
+    {
+      "question": "How is the World Bank helping farmers adapt to droughts and erratic rainfall?",
+      "relevant": [
+        "wb_P178861",
+        "wb_P515852",
+        "wb_P181533",
+        "wb_P510360",
+        "wb_P516908",
+        "wb_P511920"
+      ],
+      "split": "test"
+    },
+    {
+      "question": "Which World Bank budget-support loans tie economic reforms to climate commitments?",
+      "relevant": [
+        "wb_P181479",
+        "wb_P513997",
+        "wb_P511920"
+      ],
+      "split": "test"
     }
   ]
 }

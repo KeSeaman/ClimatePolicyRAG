@@ -29,6 +29,9 @@ class GoldQuestion(BaseModel):
     question: str
     # Ids of the ingested documents (not chunks) that answer the question.
     relevant: list[str] = Field(default_factory=list)
+    # "dev" questions may be inspected while tuning retrieval; "test" questions are only
+    # scored to confirm a configuration chosen on dev.
+    split: Literal["dev", "test"] = "dev"
 
 
 class GoldSet(BaseModel):
@@ -39,6 +42,9 @@ class GoldSet(BaseModel):
     @classmethod
     def load(cls, path: Path) -> "GoldSet":
         return cls.model_validate_json(path.read_text())
+
+    def select(self, split: Literal["dev", "test", "all"]) -> list[GoldQuestion]:
+        return [q for q in self.questions if split == "all" or q.split == split]
 
 
 class RetrievalScore(BaseModel):

@@ -14,9 +14,15 @@ from pathlib import Path
 from climate_rag._core import Document
 from climate_rag.config import Settings
 from climate_rag.embeddings import make_embedder
-from climate_rag.evaluation import GoldSet, render_markdown, score_answer, summarize
+from climate_rag.evaluation import (
+    GoldQuestion,
+    GoldSet,
+    render_markdown,
+    score_answer,
+    summarize,
+)
 from climate_rag.ingest import DEFAULT_TOPICS, ingest_topics
-from climate_rag.knowledge_base import IndexMismatchError, KnowledgeBase
+from climate_rag.knowledge_base import IndexMismatchError, KnowledgeBase, SearchOptions
 from climate_rag.llm import LLM, judge_model_name, make_expander, make_judge, make_llm
 from climate_rag.models import AgentState
 from climate_rag.pipeline import run_rag_pipeline, run_retrieval
@@ -82,6 +88,15 @@ def expander_for(args: argparse.Namespace, settings: Settings) -> LLM | None:
     return make_expander(settings) if args.expand else None
 
 
+def search_options(args: argparse.Namespace, settings: Settings) -> SearchOptions:
+    return SearchOptions(
+        mode=args.retrieval,
+        pool=settings.fusion_pool,
+        rrf_k=settings.rrf_k,
+        original_weight=settings.original_query_weight,
+    )
+
+
 def retrieval_label(args: argparse.Namespace) -> str:
     mode: str = args.retrieval
     return mode + (" + query expansion" if args.expand else "")
@@ -112,8 +127,8 @@ def cmd_ask(args: argparse.Namespace, settings: Settings) -> None:
         kb = load_kb(settings, Path(args.index), args.reembed)
     else:
         kb = build_kb(settings, fetch_corpus(settings, args.topic or DEFAULT_TOPICS, args.limit))
-    state = run_rag_pipeline(args.question, kb, make_llm(settings), args.k, args.retrieval,
-                             expander_for(args, settings))
+    state = run_rag_pipeline(args.question, kb, make_llm(settings), args.k,
+                             search_options(args, settings), expander_for(args, settings))
     if len(state.search_queries) > 1:
         print("Searched with:", *state.search_queries, sep="\n  ")
     print_result(state)
@@ -141,8 +156,10 @@ def cmd_eval(args: argparse.Namespace, settings: Settings) -> None:
                        gold.corpus_id, kb.corpus_id())
 
     expander = expander_for(args, settings)
+    options = search_options(args, settings)
+    questions = gold.select(args.split)
     if args.retrieval_only:
-        report_retrieval(args, kb, gold, expander, score_retrieval)
+        report_retrieval(args, kb, questions, options, expander, score_retrieval)
         return
 
     llm = make_llm(settings)
@@ -150,10 +167,10 @@ def cmd_eval(args: argparse.Namespace, settings: Settings) -> None:
     judge_name = judge_model_name(settings)
 
     results = []
-    for i, item in enumerate(gold.questions, 1):
-        logger.info("Query %d/%d: %s", i, len(gold.questions), item.question)
+    for i, item in enumerate(questions, 1):
+        logger.info("Query %d/%d: %s", i, len(questions), item.question)
         started = time.perf_counter()
-        state = run_rag_pipeline(item.question, kb, llm, args.k, args.retrieval, expander)
+        state = run_rag_pipeline(item.question, kb, llm, args.k, options, expander)
         elapsed = time.perf_counter() - started
         results.append(score_answer(
             state, elapsed, item.relevant if score_retrieval else (), judge
@@ -172,6 +189,7 @@ def cmd_eval(args: argparse.Namespace, settings: Settings) -> None:
         f"- **Retrieval**: {retrieval_label(args)}, k = {args.k}",
         f"- **Judge**: {judge_line}",
         f"- **Corpus**: {corpus}",
+        f"- **Questions**: {len(questions)} ({args.split} split)",
         f"- **Retrieval labels**: `{args.gold}`"
         + ("" if score_retrieval else " (not scored: labels are for a different corpus)"),
     ]
@@ -194,7 +212,8 @@ def cmd_eval(args: argparse.Namespace, settings: Settings) -> None:
 def report_retrieval(
     args: argparse.Namespace,
     kb: KnowledgeBase,
-    gold: GoldSet,
+    questions: Sequence[GoldQuestion],
+    options: SearchOptions,
     expander: LLM | None,
     labelled: bool,
 ) -> None:
@@ -202,10 +221,11 @@ def report_retrieval(
     if not labelled:
         raise SystemExit("--retrieval-only needs relevance labels for this corpus.")
     results = []
-    for item in gold.questions:
-        state = run_retrieval(item.question, kb, args.k, args.retrieval, expander)
+    for item in questions:
+        state = run_retrieval(item.question, kb, args.k, options, expander)
         results.append(score_answer(state, 0.0, item.relevant))
-    print(f"\nRetrieval: {retrieval_label(args)}, k = {args.k}\n")
+    print(f"\nRetrieval: {retrieval_label(args)}, k = {args.k}, "
+          f"{len(questions)} questions ({args.split})\n")
     print(f"{'recall':>6} {'RR':>5}  question")
     for r in results:
         assert r.retrieval is not None
@@ -254,6 +274,8 @@ def main(argv: Sequence[str] | None = None) -> None:
     ev.add_argument("--judge", action="store_true", help="also score faithfulness with an LLM")
     ev.add_argument("--retrieval-only", action="store_true",
                     help="score retrieval against the labels without generating answers")
+    ev.add_argument("--split", choices=["dev", "test", "all"], default="all",
+                    help="which questions to run: dev (for tuning), test, or all")
     ev.add_argument("--output", default="notes/Test_Queries.md")
     ev.add_argument("--limit", type=int, default=5, help="live documents per source per topic")
     ev.add_argument("-k", type=int, default=None, help="contexts to retrieve")
